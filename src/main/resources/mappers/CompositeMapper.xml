@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hin.dao.CompositeDao">
+
+  <resultMap type="com.hin.entity.Composite" id="CompositeResult">
+    <result property="id" column="id"/>
+    <result property="serviceName" column="serviceName"/>
+    <result property="serviceContent" column="serviceContent"/>
+    <result property="totalPrice" column="totalPrice"/>
+    <result property="totalProcTime" column="totalProcTime" />
+  </resultMap>
+
+  <select id="getAllComposite" resultMap="CompositeResult">
+		select * from compositeService
+  </select>
+
+  <insert id="addComposite" parameterType="com.hin.entity.Composite">
+  		insert into compositeService (serviceName, serviceContent, totalPrice, totalProcTime) 
+  		values (#{serviceName}, #{serviceContent}, #{totalPrice}, #{totalProcTime})
+  </insert>
+
+</mapper> 

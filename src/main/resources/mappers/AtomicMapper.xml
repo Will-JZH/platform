@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hin.dao.AtomicDao">
+
+  <resultMap type="com.hin.entity.Atomic" id="AtomicResult">
+    <result property="id" column="id"/>
+    <result property="serviceName" column="serviceName"/>
+    <result property="price" column="price"/>
+    <result property="procTime" column="procTime" />
+  </resultMap>
+
+  <select id="getByServiceName" parameterType="java.lang.String" resultMap="AtomicResult">
+		select * from atomicService where serviceName like CONCAT(#{serviceName}, '%')
+  </select>
+	
+  <select id="getByEnterpriseName" parameterType="java.lang.String" resultMap="AtomicResult">
+		select * from atomicService where serviceName like CONCAT('%', #{serviceName})
+  </select>
+  
+  <resultMap type="com.hin.entity.SumAtomic" id="sumAtomicResult">
+  	<result property="totalPrice" column="totalPrice"/>
+	<result property="totalProcTime" column="totalProcTime"/>  
+  </resultMap>
+  
+  <select id="sumPriceAndTime" parameterType="java.lang.String" resultMap="sumAtomicResult">
+  	SELECT sum(price) as totalPrice, sum(procTime) as totalProcTime FROM atomicService WHERE serviceName IN 
+  	<foreach item="item" index="index" collection="services"
+            open="(" separator="," close=")">
+            #{item}
+        </foreach>
+  </select>
+
+</mapper> 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hin.dao.ToSimulatedDao">
+
+  <resultMap type="com.hin.entity.ToSimulated" id="ToSimulatedResult">
+    <result property="id" column="id"/>
+	<result property="serviceName" column="serviceName"/>
+  </resultMap>
+
+  <select id="getToSimulatedInfo" resultMap="ToSimulatedResult">
+		select * from ToBeSimulated
+  </select>
+
+  <insert id="addToSimulated" parameterType="java.lang.String">
+		insert into ToBeSimulated (serviceName) values (#{serviceName});
+  </insert>
+
+  <delete id="deleteToSimulated" parameterType="java.lang.String">
+		delete from toBeSimulated where serviceName = #{serviceName}
+  </delete>
+
+</mapper> 
