@@ -27,7 +27,8 @@
 	</select>
 
   <insert id="addUser" parameterType="User">
-		insert into user (userName, password, email, phone, address, authority) values (#{userName});
+		insert into user (userName, password, email, phone, address, authority) 
+		values (#{userName}, #{password}, #{email}, #{phone}, #{address}, #{authority});
 	</insert>
 
   <delete id="deleteUser" parameterType="java.lang.String">

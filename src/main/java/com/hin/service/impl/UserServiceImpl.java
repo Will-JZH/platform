@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     	user.setEmail((String)userRegisterInfo.get("email"));
     	user.setPhone((String)userRegisterInfo.get("phone"));
     	user.setAddress((String)userRegisterInfo.get("address"));
-    	user.setAuthority((Integer)userRegisterInfo.get("authority"));
+    	user.setAuthority(Integer.parseInt((String)userRegisterInfo.get("authority")));
     	
         userDao.addUser(user);
     }

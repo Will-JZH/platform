@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="AngularSpringmvcMybatis">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="gbk">
 	<title>User login</title>
 	<link rel="stylesheet" href="/AngularSpringmvcMybatis/resources/css/app.css"/>
 	<link rel="stylesheet" href="/AngularSpringmvcMybatis/resources/bootstrap/css/bootstrap.min.css">
@@ -11,7 +11,7 @@
 		<h1>Login</h1>
 		<br>
 		UserName:<input placeholder="userName" ng-model="userName" style="width:200px;height:25px;align:center"><br><br>
-		Password:<input placeholder="password" ng-model="password" style="width:200px;height:25px;align:center"><br><br>
+		Password:<input type="password" placeholder="password" ng-model="password" style="width:200px;height:25px;align:center"><br><br>
 		<button style="align:center;text-align:center" class="btn btn-primary" ng-click="login()">Login</button>
 		<button style="align:center;text-align:center" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Register</button>
 		
@@ -28,17 +28,47 @@
 	            </div>
 	            <br>
 	            <br>
-	            <form ng-submit="register()" style="align:center;text-align:center">
-	            	UserName: <input placeholder="userName" ng-model="userNameRegister" style="width:200px;height:25px"><br><br>
-					Password: <input placeholder="password" ng-model="passwordRegister" style="width:200px;height:25px"><br><br>
-					Email: <input placeholder="email" ng-model="emailRegister" style="width:200px;height:25px"><br><br>
-					Phone: <input placeholder="phone" ng-model="phoneRegister" style="width:200px;height:25px"><br><br>
-					Address: <input placeholder="address" ng-model="addressRegister" style="width:200px;height:25px"><br><br>
-					Authority: 
-						<select ng-model="authority" style="height:25px">
+	            <form ng-submit="register()" style="align:center;text-align:center" name="myForm" novalidate>
+	            	<p>UserName:<br>
+  						<input type="text" name="userName" ng-model="userName" required>
+  						<span style="color:red" ng-show="myForm.userName.$dirty && myForm.userName.$invalid">
+  						<span ng-show="myForm.userName.$error.required">user name is necessary</span>
+  						</span>
+					</p>
+					<p>Password:<br>
+  						<input type="text" name="password" ng-model="password" required>
+  						<span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+  						<span ng-show="myForm.password.$error.required">password is necessary</span>
+  						</span>
+					</p>
+					<p>Email:<br>
+  						<input type="text" name="email" ng-model="email" required>
+  						<span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+  						<span ng-show="myForm.email.$error.required">email is necessary</span>
+  						<span ng-show="myForm.email.$error.email">email is illegal</span>
+  						</span>
+					</p>
+	            	<p>Phone:<br>
+  						<input type="text" name="phone" ng-model="phone" required>
+  						<span style="color:red" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+  						<span ng-show="myForm.phone.$error.required">phone is necessary</span>
+  						</span>
+					</p>
+	       			<p>Address:<br>
+  						<input type="text" name="address" ng-model="address" required>
+  						<span style="color:red" ng-show="myForm.address.$dirty && myForm.address.$invalid">
+  						<span ng-show="myForm.address.$error.required">phone is necessary</span>
+  						</span>
+					</p>
+					<p>Authority:<br>
+  						<select ng-model="authority" style="height:25px" required> 
 							<option value="1">service requester</option>
 							<option value="2">service publisher</option>
-						</select><br><br>
+						</select>
+  						<span style="color:red" ng-show="myForm.authority.$dirty && myForm.authority.$invalid">
+  						<span ng-show="myForm.authority.$error.required">authority is necessary</span>
+  						</span>
+					</p>
 					<button type="submit" class="btn btn-default">submit</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
 	            </form>
