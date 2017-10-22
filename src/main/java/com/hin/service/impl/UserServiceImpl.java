@@ -1,6 +1,7 @@
 package com.hin.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -18,20 +19,32 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
 
-    public User login(User user) {
-        return userDao.login(user);
+    public User login(Map<String, String> userLoginInfo) {
+    	User user = getUserByName(userLoginInfo.get("userName"));
+    	if (user != null && user.getPassword() != null && user.getPassword() == userLoginInfo.get("password")) {
+    		return user;
+    	}
+        return null;
     }
 
-    public User getUserById(int id) {
-        return userDao.getUserById(id);
+    public User getUserByName(String userName) {
+        return userDao.getUserByName(userName);
     }
 
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 
-    public void addUser(String userName) {
-        userDao.addUser(userName);
+    public void addUser(Map<String, Object> userRegisterInfo) {
+    	User user = new User();
+    	user.setUserName((String)userRegisterInfo.get("userName"));
+    	user.setPassword((String)userRegisterInfo.get("password"));
+    	user.setEmail((String)userRegisterInfo.get("email"));
+    	user.setPhone((String)userRegisterInfo.get("phone"));
+    	user.setAddress((String)userRegisterInfo.get("address"));
+    	user.setAuthority((Integer)userRegisterInfo.get("authority"));
+    	
+        userDao.addUser(user);
     }
 
     public void deleteUser(String userName) {

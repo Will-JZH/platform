@@ -1,18 +1,19 @@
 package com.hin.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hin.entity.User;
 
 public interface UserService {
 
-    User login(User user);
+	User login(Map<String, String> userLoginInfo);
 
-    User getUserById(int id);
+    User getUserByName(String userName);
 
     List<User> getAllUsers();
 
-    void addUser(String userName);
+    void addUser(Map<String, Object> userRegisterInfo);
 
     void deleteUser(String userName);
 

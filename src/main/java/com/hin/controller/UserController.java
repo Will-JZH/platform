@@ -1,11 +1,13 @@
 package com.hin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,10 +28,16 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @RequestMapping(value = "/addUser/{userName}", method = RequestMethod.POST)
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     @ResponseBody
-    public void addUser(@PathVariable("userName") String userName) {
-        userService.addUser(userName);
+    public void addUser(@RequestBody Map<String, Object> userRegisterInfo) {
+        userService.addUser(userRegisterInfo);
+    }
+    
+    @RequestMapping(value = "/loginUser", method = RequestMethod.POST)
+    @ResponseBody
+    public User loginUser(@RequestBody Map<String, String> userLoginInfo) {
+        return userService.login(userLoginInfo);
     }
 
     @RequestMapping(value = "/removeUser/{userName}", method = RequestMethod.DELETE)
