@@ -21,7 +21,9 @@ public class UserServiceImpl implements UserService {
 
     public User login(Map<String, String> userLoginInfo) {
     	User user = getUserByName(userLoginInfo.get("userName"));
-    	if (user != null && user.getPassword() != null && user.getPassword() == userLoginInfo.get("password")) {
+    
+    	if (user != null && user.getPassword() != null 
+    			&& user.getPassword().equals(userLoginInfo.get("password"))) {
     		return user;
     	}
         return null;

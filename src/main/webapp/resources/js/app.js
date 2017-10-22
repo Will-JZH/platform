@@ -10,6 +10,10 @@ App.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'users/layout',
         controller: UserController
     });
+    $routeProvider.when('/mainhtml', {
+        templateUrl: 'mainhtml/main',
+        controller: MainController
+    });
 
     $routeProvider.otherwise({redirectTo: '/'});
 }]);

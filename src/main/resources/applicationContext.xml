@@ -23,13 +23,15 @@
   <!-- 自动扫描 -->
   <context:component-scan base-package="com.hin.dao"/>
   <context:component-scan base-package="com.hin.service"/>
+  <context:component-scan base-package="com.hin.service.impl"/>
+  <context:component-scan base-package="com.hin.controller"/>
 
   <!-- 配置数据源 -->
   <bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
     <property name="url"
-              value="jdbc:mysql://localhost:3306/cloudplatform?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;useSSL=false"/>
+              value="jdbc:mysql://localhost:3306/platform?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;useSSL=false"/>
     <property name="username" value="root"/>
     <property name="password" value="893893"/>
   </bean>

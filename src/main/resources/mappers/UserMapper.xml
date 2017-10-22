@@ -8,30 +8,34 @@
     <result property="userId" column="userId"/>
     <result property="userName" column="userName"/>
     <result property="password" column="password"/>
+    <result property="email" column="email"/>
+    <result property="phone" column="phone"/>
+    <result property="address" column="address"/>
+    <result property="authority" column="authority"/>
   </resultMap>
 
   <select id="login" parameterType="User" resultMap="UserResult">
-		select * from t_user where userName=#{userName} and password=#{password}
+		select * from user where userName=#{userName} and password=#{password}
 	</select>
 
-  <select id="getUserById" parameterType="User" resultMap="UserResult">
-		select * from t_user where userId=#{id}
+  <select id="getUserByName" parameterType="java.lang.String" resultMap="UserResult">
+		select * from user where userName=#{userName}
 	</select>
 
   <select id="getAllUsers" parameterType="User" resultMap="UserResult">
-		select * from t_user
+		select * from user
 	</select>
 
   <insert id="addUser" parameterType="User">
-		insert into t_user (userName) values (#{userName});
+		insert into user (userName, password, email, phone, address, authority) values (#{userName});
 	</insert>
 
   <delete id="deleteUser" parameterType="java.lang.String">
-		delete from t_user where userName = #{userName}
+		delete from user where userName = #{userName}
 	</delete>
 
   <delete id="deleteAll" parameterType="java.lang.String">
-		delete from t_user
+		delete from user
 	</delete>
 
 </mapper> 

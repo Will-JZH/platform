@@ -1,342 +1,64 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="en" ng-app="AngularSpringmvcMybatis">
 <head>
-    <meta charset="utf-8">
-    <title>AngularSpringmvcMybatis App</title>
-    <link rel="stylesheet" href="/AngularSpringmvcMybatis/resources/css/app.css"/>
+	<meta charset="UTF-8">
+	<title>User login</title>
+	<link rel="stylesheet" href="/AngularSpringmvcMybatis/resources/css/app.css"/>
 	<link rel="stylesheet" href="/AngularSpringmvcMybatis/resources/bootstrap/css/bootstrap.min.css">
-	
 </head>
-<body ng-controller="MainController">
-	<h1>云平台  <small>——626实验室云服务平台</small> </h1>
-	<hr>
-	<ul class="nav nav-tabs">
-		<li><a href="#服务发布" data-toggle="tab">服务发布</a></li>
-		<li><a href="#需求发布" data-toggle="tab">需求发布</a></li>
-		<li><a href="#服务组合" data-toggle="tab">服务组合</a></li>
-		<li><a href="#服务评价" data-toggle="tab">服务评价</a></li>
-	</ul>
-	<div class="tab-content">
-		<div class="tab-pane fade in active" id="服务发布">
-			<div class="col-md-3" style="background-color:#E0E0E0; height:495px;">
-				<h4 style="margin-left:80px"><b>高级发布选项</b></h4>
-					<input placeholder="请输入WSDL路径" ng-model="wsdlPath" style="width:200px;margin-left:40px"><br><br>
-					<span style="margin-left:40px">上传OWL文件： </span>
-					<form ng-submit="uploadFile()" class="form-horizontal" enctype="multipart/form-data">
-					   <input style="margin-left:40px;width:200px" type="file" name="file" class="btn btn-primary" ng-model="document.fileInput" id="file" onchange="document.getElementById('filepath').value=this.value;" /><br>
-					   <input style="margin-left:40px;width:200px" ng-disabled="true" placeholder="所选文件路径" name="filepath" id="filepath" /><br><br>
-					   <button style="margin-left:110px" class="btn btn-primary" type="submit">提交</button>
-					</form>
-			</div>
-			<div class="col-md-9">
-			<div>
-				<h4 style="margin-left:300px"><b>初级发布选项</b></h4>
-				<button id="发布服务" ng-click="deleteService = false" class="btn btn-primary">发布服务</button> <button id="删除服务" ng-click="deleteService = true" class="btn">删除服务</button>
-				<div style="margin-left:200px" id="发布服务页面" ng-hide="deleteService">
-					<br>
-						请输入企业名称：<input placeholder="企业名称" ng-model="enterpriseName" style="width:200px;height:25px"><br><br>
-						请选择发布的机床：
-						<select ng-model="machineTypePublish" style="width:200px;height:25px">
-							<option value="车床">车床</option>
-							<option value="刨床">刨床</option>
-							<option value="磨床">磨床</option>
-							<option value="铣床">铣床</option>
-							<option value="镗床">镗床</option>
-							<option value="钻床">钻床</option>
-							<option value="钳床">钳床</option>
-						</select><br><br>
-						请输入机床型号：<input ng-model="machineVersion" placeholder="机床型号" style="width:200px;height:25px"><br><br>
-						请选择加工能力：
-						<select ng-model="partType" style="height:25px">
-							<option value="回转体">回转体</option>
-							<option value="板件">板件</option>
-							<option value="箱体">箱体</option>
-							<option value="连杆">连杆</option>
-							<option value="齿轮">齿轮</option>
-						</select>
-						<select ng-model="shapeType" style="height:25px">
-							<option value="圆">圆</option>
-							<option value="孔">孔</option>
-							<option value="平面">平面</option>
-							<option value="曲面">曲面</option>
-							<option value="槽">槽</option>
-							<option value="端面">端面</option>
-							<option value="螺纹">螺纹</option>
-						</select>
-						<select ng-model="technologyType" style="height:25px">
-							<option value="车">车</option>
-							<option value="刨">刨</option>
-							<option value="磨">磨</option>
-							<option value="铣">铣</option>
-							<option value="镗">镗</option>
-							<option value="钻">钻</option>
-							<option value="绞">绞</option>
-						</select><br><br>
-						请输入尺寸精度：<input ng-model="size" placeholder="尺寸精度，例如：20cm-2mm" style="width:200px;height:25px"><br><br>
-						请输入服务描述：<textarea ng-model="serviceDescribe" placeholder="服务描述" style="width:200px"></textarea><br><br>
-						服务的起止时间：<input style="height:25px" type="date" ng-model="startTime"> 至 <input style="height:25px" type="date" ng-model="endTime"><br><br>
-						
-						<button style="margin-left:100px" class="btn btn-primary" ng-mdoel="savePublish()">保存并发布</button>
-						<button ng-click="clearPublish()" class="btn btn-primary">清空</button>
-				</div>
-				<div style="margin-left:200px" id="删除服务页面" ng-show="deleteService">
-				<br>
-			
-					请选择企业：
-					<select ng-model="enterprise" ng-options="x for x in enterprises" style="width:200px;height:30px">
-					</select><br><br>
-					请选择机床：
-					<select ng-model="machine" ng-options="y for y in machines" style="width:200px;height:30px">
-					</select><br><br>
-					请选择机床型号：
-					<select ng-model="machineType" ng-options="z for z in machineTypes" style="width:200px;height:30px">
-					</select><br><br>
-					<button style="margin-left:100px" class="btn btn-danger" ng-click="deleteService()">确认删除</button>
-					<button class="btn btn-primary" ng-click="cancelDelete()">取消</button>
-				</div>
-			</div>
-		</div>
-		</div>
-		<div class="tab-pane fade" id="需求发布">
+<body ng-controller="UserController">
+	<div style="align:center;text-align:center">
+		<h1>Login</h1>
+		<br>
+		UserName:<input placeholder="userName" ng-model="userName" style="width:200px;height:25px;align:center"><br><br>
+		Password:<input placeholder="password" ng-model="password" style="width:200px;height:25px;align:center"><br><br>
+		<button style="align:center;text-align:center" class="btn btn-primary" ng-click="login()">Login</button>
+		<button style="align:center;text-align:center" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Register</button>
 		
-		</div>
-		<div class="tab-pane fade" id="服务组合">
-			<div class="col-md-3" style="background-color:#E0E0E0; height:495px">
-			<br>
-					<h4 style="margin-left:100px"><b>检索原子服务</b></h4><br>
-					<select style="width:auto;height:30px;margin-left:45px;padding:0 22%" ng-model="searchType">
-						<option value="服务名称">服务名称</option>
-						<option value="企业名称">企业名称</option>
-						<option value="加工能力">加工能力</option>
-					</select><br><br>
-					<input style="width:217px;height:30px;margin-left:45px;text-align:center;align:center" ng-model="serviceName"><br><br>
-					<button style="margin-left:100px" class="btn btn-primary" ng-click="getServiceInfo(1)">服务检索</button>
-			</div>
-			<div class="col-md-6">
-				<div style="height:450px">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-				                <th>服务名称</th>
-				                <th>单价</th>
-				                <th>时间</th>
-				                <th>选择</th>
-				            </tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="message in messages">
-				                <td class="inbox-data col-md-4">
-				                    <div>
-				                        <span title="{{message['id']}}">{{message['serviceName']}}</span>
-				                    </div>
-				                </td>
-				                <td class="inbox-data">
-				                    <div>
-				                        {{message['price']}}
-				                    </div>
-				                </td>
-				                <td class="inbox-data">
-				                    <div>
-				                        {{message['time']}}
-				                    </div>
-				                </td>
-				                <td class="inbox-data col-md-2">
-				                	<button class="btn btn-primary dropdown-toggle" ng-click="selectService(message.serviceName)">选择原子服务</button>
-				                </td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div style="margin-left:250px">
-					<button class="btn btn-primary" ng-click="upPage(atomicCurrentPage)">上一页</button>
-					<button class="btn btn-primary" ng-click="downPage(atomicCurrentPage)">下一页</button>
-					第{{atomicCurrentPage}}页，共{{atomicTotalPage}}页
-				</div>
-			</div>
-			<div class="col-md-3" style="background-color:#E0E0E0; height:495px">
-				<div class="center-block" style="width:300px">
-					<h4 style="margin-left:80px"><b>定制组合服务</b></h4>
-					目前只支持顺序结构
-					<div style="height:350px;background:#fff;overflow:auto">
-						<table class="table">
-							<tbody>
-								<tr ng-repeat="service in services">
-									<td class="inbox-data" style="height:25px;width:300px;align:center;text-align:center">
-										{{service}}
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div><br>
-					<input placeholder="定义组合服务名称" style="width:150px" ng-model="compositeServiceName">
-					<button class="btn btn-primary" ng-click="compositeService()">组合服务</button>
-					<button class="btn btn-primary" ng-click="services=[];">清空</button>
-				</div>
-				
-			</div>
-		</div>
-		<div class="tab-pane fade" id="服务评价">
-			<div class="col-md-3" style="background-color:#E0E0E0; height:495px">
-				<h4 style="margin-left:100px"><b>已仿真列表</b></h4>
-				<div style="background:#fff;height:150px;overflow:auto" >
-					<table>
-						<tbody>
-							<tr ng-repeat="simed in simeds">
-								<td style="height:25px;width:300px;align:center;text-align:center">
-									<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" ng-click="getEvaluationResult(simed.name)">
-										{{simed['name']}}
-									</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div><hr>
-				<h4 style="margin-left:100px"><b>待仿真列表</b></h4>
-				<div style="background:#fff;height:200px;overflow:auto;align:center">
-					<table>
-						<tbody>
-							<tr ng-repeat="sim in sims">
-								<td style="height:25px;width:300px;align:center;text-align:center">
-									{{sim}}
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="col-md-9">
-				<div style="height:435px">
-					<h4><b>组合服务列表：</b></h4>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-				                <th>组合服务名称</th>
-				                <th>组合服务内容</th>
-				                <th>总价</th>
-				                <th>总时长</th>
-				                <th>仿真</th>
-				                <th>删除</th>
-				            </tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="compositeService in compositeServices">
-				                <td class="inbox-data col-md-4">
-				                    <div>
-				                        <span title="compositeService['id']}}">{{compositeService['name']}}</span>
-				                    </div>
-				                </td>
-				                <td class="inbox-data">
-				                	<div>
-				                		{{compositeService['content']}}
-				                	</div>
-				                </td>
-				                <td class="inbox-data">
-				                    <div>
-				                        {{compositeService['totalPrice']}}
-				                    </div>
-				                </td>
-				                <td class="inbox-data">
-				                    <div>
-				                        {{compositeService['totalTime']}}
-				                    </div>
-				                </td>
-				                <td class="inbox-data">
-				                	<button class="btn btn-primary dropdown-toggle" ng-click="doSimulation(compositeService.name)">仿真</button>
-				                </td>
-				                <td class="inbox-data">
-				                	<button class="btn btn-danger dropdown-toggle" ng-click="cancelService(compositeService.id)">删除</button>
-				                </td>
-							</tr>
-						</tbody>
-					</table>
 					
-				</div>
-				<div style="margin-left:300px">
-					<button class="btn btn-primary" ng-click="goPreviousPage(currentPage)">上一页</button>
-					<button class="btn btn-primary" ng-click="goNextPage(currentPage)">下一页</button>
-					第{{currentPage}}页，共{{totalPage}}页
-				</div>
-			</div>
-		</div>
-	
+		
 	</div>
+	
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title" id="myModalLabel">Evaluation results of composite service</h4>
+	                <h4 class="modal-title" id="myModalLabel">User Register</h4>
 	            </div>
-	            <div>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>service name</th>
-				            <th>cost</th>
-				            <th>processing time</th>
-				            <th>facility utilization</th>
-				            <th>resource utilization</th>
-				            <th>bottleneck analysis</th>
-				            <th>completed quantity</th>
-				        </tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="simed in simeds">
-				            <td class="inbox-data col-md-4">
-				                <div>
-				                    {{simed['name']}}
-				                </div>
-				            </td>
-				            <td class="inbox-data">
-				             	<div>
-				             		{{simed['cost']}}
-				               	</div>
-				            </td>
-				            <td class="inbox-data">
-				                <div>
-				                    {{simed['processingTime']}}
-				                </div>
-				            </td>
-				            <td class="inbox-data">
-				                <div>
-				                    {{simed['facilityUtilization']}}
-				                </div>
-				            </td>
-				            <td class="inbox-data">
-				                <div>
-				                    {{simed['resourceUtilization']}}
-				                </div>
-				            </td>
-				            <td class="inbox-data">
-				                <div>
-				                    {{simed['bottleneckAnalysis']}}
-				                </div>
-				            </td>
-				            <td class="inbox-data">
-				                <div>
-				                    {{simed['completedQuantity']}}
-				                </div>
-				            </td>
-						</tr>
-					</tbody>
-				</table>          
-				</div>
+	            <br>
+	            <br>
+	            <form ng-submit="register()" style="align:center;text-align:center">
+	            	UserName: <input placeholder="userName" ng-model="userNameRegister" style="width:200px;height:25px"><br><br>
+					Password: <input placeholder="password" ng-model="passwordRegister" style="width:200px;height:25px"><br><br>
+					Email: <input placeholder="email" ng-model="emailRegister" style="width:200px;height:25px"><br><br>
+					Phone: <input placeholder="phone" ng-model="phoneRegister" style="width:200px;height:25px"><br><br>
+					Address: <input placeholder="address" ng-model="addressRegister" style="width:200px;height:25px"><br><br>
+					Authority: 
+						<select ng-model="authority" style="height:25px">
+							<option value="1">service requester</option>
+							<option value="2">service publisher</option>
+						</select><br><br>
+					<button type="submit" class="btn btn-default">submit</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+	            </form>
+					
 	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                
 	            </div>
 	        </div><!-- /.modal-content -->
 	    </div><!-- /.modal -->
 	</div>
-<script src="/AngularSpringmvcMybatis/resources/js/lib/angular/angular.js"></script>
-<script src="/AngularSpringmvcMybatis/resources/js/lib/angular/angular-file-upload.min.js"></script>
-<script src="/AngularSpringmvcMybatis/resources/js/app.js"></script>
-<script src="/AngularSpringmvcMybatis/resources/js/services.js"></script>
-<script src="/AngularSpringmvcMybatis/resources/js/controllers/UserController.js"></script>
-<script src="/AngularSpringmvcMybatis/resources/js/controllers/MainController.js"></script>
-<script src="/AngularSpringmvcMybatis/resources/js/filters.js"></script>
-<script src="/AngularSpringmvcMybatis/resources/js/directives.js"></script>
-<script src="/AngularSpringmvcMybatis/resources/bootstrap/js/jquery-3.1.1.min.js"></script>
-<script src="/AngularSpringmvcMybatis/resources/bootstrap/js/bootstrap.min.js"></script>
-
+	    
+	<script src="/AngularSpringmvcMybatis/resources/js/lib/angular/angular.js"></script>
+	<script src="/AngularSpringmvcMybatis/resources/js/lib/angular/angular-file-upload.min.js"></script>
+	<script src="/AngularSpringmvcMybatis/resources/js/app.js"></script>
+	<script src="/AngularSpringmvcMybatis/resources/js/services.js"></script>
+	<script src="/AngularSpringmvcMybatis/resources/js/controllers/UserController.js"></script>
+	<script src="/AngularSpringmvcMybatis/resources/js/controllers/MainController.js"></script>
+	<script src="/AngularSpringmvcMybatis/resources/js/filters.js"></script>
+	<script src="/AngularSpringmvcMybatis/resources/js/directives.js"></script>
+	<script src="/AngularSpringmvcMybatis/resources/bootstrap/js/jquery-3.1.1.min.js"></script>
+	<script src="/AngularSpringmvcMybatis/resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@ package com.hin.entity;
 
 public class User {
 
-    private Integer userID;
+    private Integer userId;
     private String userName;
     private String password;
     private String email;
@@ -11,11 +11,11 @@ public class User {
     private Integer authority;
     
 	public Integer getUserID() {
-		return userID;
+		return userId;
 	}
 	
 	public void setUserID(Integer userID) {
-		this.userID = userID;
+		this.userId = userID;
 	}
 	
 	public String getUserName() {

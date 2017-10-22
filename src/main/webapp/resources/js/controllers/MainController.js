@@ -4,7 +4,7 @@
  * 
  */
 
-var MainController = function($scope, $http) {
+var MainController = function($scope, $http) {	
 	//********************服务发布*****************//
 	//存放传入的wsdl url路径
 	$scope.wsdlPath = "";
