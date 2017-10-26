@@ -3,7 +3,7 @@
 /**
  * UserController
  */
-var UserController = function($scope, $http) {
+var UserController = function($scope, $http, $location) {
 	$scope.userName = "";
 	$scope.password = "";
 	
@@ -19,6 +19,8 @@ var UserController = function($scope, $http) {
 			console.log(data);
 			if (data != "" && data != null) {
 				window.open('users/layout.html', data);
+				console.log(data);
+//				$location.path("/main");
 			} else {
 				alert("username or password error");
 			}
@@ -36,7 +38,6 @@ var UserController = function($scope, $http) {
 	$scope.authority=0;
 	
 	$scope.register = function() {
-		console.log($scope.authority);
 		$http({
 			method : "POST",
 			url : "users/addUser",
