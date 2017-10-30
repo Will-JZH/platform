@@ -16,11 +16,9 @@ var UserController = function($scope, $http, $location) {
 				password : $scope.password
 			}
 		}).success(function (data, status) {
-			console.log(data);
 			if (data != "" && data != null) {
-				window.open('users/layout.html', data);
-				console.log(data);
-//				$location.path("/main");
+				var str = "userName=" + data["userName"] + "&password=" + data["password"] + "&email=" + data["email"] + "&phone=" + data["phone"] + "&address=" + data["address"] + "&authority=" + data["authority"];
+				window.open('users/layout.html?' + str, '_self');
 			} else {
 				alert("username or password error");
 			}

@@ -5,6 +5,18 @@
  */
 
 var MainController = function($scope, $http) {	
+	var url = window.location.href;
+	var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
+	var paraObj = {};
+	var j;
+	for (var i=0; j=paraString[i]; i++){ 
+		paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+	}
+	console.log(paraObj);
+	
+	$scope.authority = paraObj["authority"];
+	
+	
 	//********************服务发布*****************//
 	//存放传入的wsdl url路径
 	$scope.wsdlPath = "";
