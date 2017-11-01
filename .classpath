@@ -28,33 +28,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="service_jar/antlr.jar"/>
-	<classpathentry kind="lib" path="service_jar/arq.jar"/>
-	<classpathentry kind="lib" path="service_jar/aterm-java-1.6.jar"/>
-	<classpathentry kind="lib" path="service_jar/axis.jar"/>
-	<classpathentry kind="lib" path="service_jar/axis-ant.jar"/>
-	<classpathentry kind="lib" path="service_jar/commons-discovery.jar"/>
-	<classpathentry kind="lib" path="service_jar/commons-httpclient-3.0-alpha1.jar"/>
-	<classpathentry kind="lib" path="service_jar/commons-logging.jar"/>
-	<classpathentry kind="lib" path="service_jar/concurrent.jar"/>
-	<classpathentry kind="lib" path="service_jar/icu4j.jar"/>
-	<classpathentry kind="lib" path="service_jar/jakarta-oro-2.0.5.jar"/>
-	<classpathentry kind="lib" path="service_jar/jaxrpc.jar"/>
-	<classpathentry kind="lib" path="service_jar/jena.jar"/>
-	<classpathentry kind="lib" path="service_jar/junit.jar"/>
-	<classpathentry kind="lib" path="service_jar/log4j-1.2.7.jar"/>
-	<classpathentry kind="lib" path="service_jar/log4j-1.2.8.jar"/>
-	<classpathentry kind="lib" path="service_jar/owl-s.jar"/>
-	<classpathentry kind="lib" path="service_jar/pellet.jar"/>
-	<classpathentry kind="lib" path="service_jar/saaj.jar"/>
-	<classpathentry kind="lib" path="service_jar/upnp.jar"/>
-	<classpathentry kind="lib" path="service_jar/webservices-api.jar"/>
-	<classpathentry kind="lib" path="service_jar/webservices-extra.jar"/>
-	<classpathentry kind="lib" path="service_jar/webservices-extra-api.jar"/>
-	<classpathentry kind="lib" path="service_jar/webservices-rt.jar"/>
-	<classpathentry kind="lib" path="service_jar/webservices-tools.jar"/>
-	<classpathentry kind="lib" path="service_jar/wsdl4j.jar"/>
-	<classpathentry kind="lib" path="service_jar/xercesImpl.jar"/>
-	<classpathentry kind="lib" path="service_jar/xml-apis.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

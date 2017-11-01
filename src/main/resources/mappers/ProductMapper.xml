@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hin.dao.ProductDao">
+
+  <resultMap type="com.hin.entity.Product" id="ProductResult">
+    <result property="productID" column="productID"/>
+    <result property="productName" column="productName"/>
+    <result property="userID" column="userID"/>
+    <result property="productDescript" column="productDescript"/>
+    <result property="inventory" column="inventory"/>
+    <result property="price" column="price"/>
+    <result property="productContent" column="productContent" />
+  </resultMap>
+
+  <insert id="addProduct" parameterType="com.hin.entity.Product">
+  		insert into productResourceInfo (productName, userID, productDescript, inventory, price, productContent) 
+  		values(#{productName}, #{userID}, #{productDescript}, #{inventory}, #{price}, #{productContent})
+  </insert>
+</mapper> 

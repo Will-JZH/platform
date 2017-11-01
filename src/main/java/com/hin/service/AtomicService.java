@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.hin.entity.Atomic;
 import com.hin.entity.SumAtomic;
 
-@Service
 public interface AtomicService {
 	List<Atomic> getByServiceName(String serviceName);
 

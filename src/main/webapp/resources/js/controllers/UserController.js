@@ -17,7 +17,7 @@ var UserController = function($scope, $http, $location) {
 			}
 		}).success(function (data, status) {
 			if (data != "" && data != null) {
-				var str = "userName=" + data["userName"] + "&password=" + data["password"] + "&email=" + data["email"] + "&phone=" + data["phone"] + "&address=" + data["address"] + "&authority=" + data["authority"];
+				var str = "userID=" + data["userID"] + "&userName=" + data["userName"] + "&password=" + data["password"] + "&email=" + data["email"] + "&phone=" + data["phone"] + "&address=" + data["address"] + "&authority=" + data["authority"];
 				window.open('users/layout.html?' + str, '_self');
 			} else {
 				alert("username or password error");

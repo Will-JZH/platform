@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hin.dao.ServiceResourceInfoDao">
+
+  <resultMap type="com.hin.entity.ServiceResourceInfo" id="ServiceResourceResult">
+    <result property="resourceID" column="resourceID"/>
+    <result property="resourceName" column="resourceName"/>
+    <result property="userID" column="userID"/>
+    <result property="category" column="category"/>
+    <result property="description" column="description"/>
+    <result property="procTime" column="procTime"/>
+    <result property="fee" column="fee" />
+    <result property="resourceContent" column="resourceContent" />
+  </resultMap>
+
+  <insert id="addServiceResource" parameterType="com.hin.entity.ServiceResourceInfo">
+  		insert into serviceResourceInfo (resourceName, userID, category, description, procTime, fee, resourceContent) 
+  		values(#{resourceName}, #{userID}, #{category}, #{description}, #{procTime}, #{fee}, #{resourceContent})
+  </insert>
+  <select id="getServiceResource" parameterType="java.lang.String" resultMap="ServiceResourceResult">
+		select * from serviceResourceInfo where resourceName = #{resourceName}
+  </select>
+  
+</mapper> 

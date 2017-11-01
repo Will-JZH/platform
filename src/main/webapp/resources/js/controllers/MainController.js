@@ -10,14 +10,122 @@ var MainController = function($scope, $http) {
 	var paraObj = {};
 	var j;
 	for (var i=0; j=paraString[i]; i++){ 
-		paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+		paraObj[j.substring(0,j.indexOf("="))] = j.substring(j.indexOf("=")+1,j.length); 
 	}
 	console.log(paraObj);
 	
 	$scope.authority = paraObj["authority"];
 	
 	
-	//********************服务发布*****************//
+	//********************产品发布为服务*****************//
+	$scope.partCount = 1;
+	$scope.countUp = function() {
+		if ($scope.partCount < 7) {
+			$scope.partCount += 1;
+		}
+	}
+	$scope.countDown = function() {
+		if ($scope.partCount > 1) {
+			$scope.partCount -= 1;
+		}
+	}
+	
+	$scope.savePublish0 = function() {
+		var productContent = "";
+		if (typeof($scope.part1) != "undefined") {
+			productContent = $scope.part1;
+		}
+		if (typeof($scope.part2) != "undefined") {
+			productContent += "+" + $scope.part2;
+		}
+		if (typeof($scope.part3) != "undefined") {
+			productContent += "+" + $scope.part3; 
+		}
+		if (typeof($scope.part4) != "undefined") {
+			productContent += "+" + $scope.part4; 
+		}
+		if (typeof($scope.part5) != "undefined") {
+			productContent += "+" + $scope.part5;
+		}
+		if (typeof($scope.part6) != "undefined") {
+			productContent += "+" + $scope.part6; 
+		}
+		if (typeof($scope.part7) != "undefined") {
+			productContent += "+" + $scope.part7; 
+		}
+		if (typeof($scope.part78) != "undefined") {
+			productContent += "+" + $scope.part8; 
+		}
+		console.log(productContent);
+		$http({
+			method : "POST",
+			url : "/AngularSpringmvcMybatis/product/addProduct",
+			data : {
+				productName : $scope.machineTypePublish + "(" + $scope.machineVersion + ")",
+				userID : paraObj["userID"],
+				productDescript : $scope.serviceDescribe,
+				inventory : $scope.inventory,
+				price : $scope.price,
+				productContent : productContent
+			}
+		}).success(function (data, status) {
+			alert("产品发布成功");
+		}).error(function (data, status){
+			alert("error..." + status);
+		});
+	}
+	
+	$scope.clearPublish0 = function() {
+		$scope.machineTypePublish="";
+		$scope.machineVersion="";
+		$scope.serviceDescribe="";
+		$scope.inventory="";
+		$scope.price="";
+		$scope.part1="";
+		$scope.part2="";
+		$scope.part3="";
+		$scope.part4="";
+		$scope.part5="";
+		$scope.part6="";
+		$scope.part7="";
+		$scope.part8="";
+	}
+	
+	//********************加工能力发布为服务*****************//
+	$scope.savePublish1 = function() {
+		$http({
+			method : "POST",
+			url : "",
+			data : {
+				resourceName : $scope.serviceObj + $scope.serviceType,
+				userID : paraObj["userID"],
+				category : 1,
+				description : $scope.serviceDescription,
+				procTime : $scope.procTime,
+				fee : $scope.fee,
+				resourceContent : $scope.resourceContent
+			}
+		}).success(function (data, status) {
+			alert("加工能力发布成功");
+		}).error(function (data, status){
+			alert("加工能力发布失败..." + status);
+		});	
+	}
+	
+	$scope.publishResourceCal = function() {
+		$http({
+			method : "POST",
+			url : "",
+			data : {
+				
+			}
+		}).success(function (data, status) {
+			alert("资源日历添加成功");
+		}).error(function (data, status){
+			alert("资源日历添加失败..." + status);
+		});
+	}
+	
 	//存放传入的wsdl url路径
 	$scope.wsdlPath = "";
 
