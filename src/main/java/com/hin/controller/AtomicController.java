@@ -31,7 +31,6 @@ public class AtomicController {
     @RequestMapping(value="/searchByServiceName/{serviceName}", method = RequestMethod.GET)
     @ResponseBody
     public List<Atomic> getByServiceName(@PathVariable String serviceName) {
-    	LOGGER.info(serviceName);
         return atomicService.getByServiceName(serviceName);
     }
     

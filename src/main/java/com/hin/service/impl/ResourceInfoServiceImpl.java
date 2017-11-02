@@ -18,16 +18,23 @@ public class ResourceInfoServiceImpl implements ResourceInfoService {
 	
 	@Override
 	public void addServiceResource(Map<String, Object> resourceInfo) {
+		String resourceName = resourceInfo.get("resourceName").toString();
+		Integer userID = Integer.parseInt(resourceInfo.get("userID").toString());
+		
 		ServiceResourceInfo resource = new ServiceResourceInfo();
-		resource.setResourceName(resourceInfo.get("resourceName").toString());
-		resource.setUserID(Integer.parseInt(resourceInfo.get("userID").toString()));
+		resource.setResourceName(resourceName);
+		resource.setUserID(userID);
 		resource.setCategory(Integer.parseInt(resourceInfo.get("category").toString()));
 		resource.setDescription(resourceInfo.get("description").toString());
 		resource.setProcTime(Double.parseDouble(resourceInfo.get("procTime").toString()));
 		resource.setFee(Double.parseDouble(resourceInfo.get("fee").toString()));
 		resource.setResourceContent(resourceInfo.get("resourceContent").toString());
 		
-		resourceInfoDao.addServiceResource(resource);
+		ServiceResourceInfo exsitResource = resourceInfoDao.getServiceResource(resourceName, userID);
+		
+		if (exsitResource == null) {
+			resourceInfoDao.addServiceResource(resource);
+		}
 	}
 
 	@Override

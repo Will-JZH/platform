@@ -19,8 +19,8 @@
   		insert into serviceResourceInfo (resourceName, userID, category, description, procTime, fee, resourceContent) 
   		values(#{resourceName}, #{userID}, #{category}, #{description}, #{procTime}, #{fee}, #{resourceContent})
   </insert>
-  <select id="getServiceResource" parameterType="java.lang.String" resultMap="ServiceResourceResult">
-		select * from serviceResourceInfo where resourceName = #{resourceName}
+  <select id="getServiceResource" resultMap="ServiceResourceResult">
+		select * from serviceResourceInfo where resourceName = #{0} and userID=#{1}
   </select>
   
 </mapper> 

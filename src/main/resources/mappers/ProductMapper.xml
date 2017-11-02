@@ -18,4 +18,7 @@
   		insert into productResourceInfo (productName, userID, productDescript, inventory, price, productContent) 
   		values(#{productName}, #{userID}, #{productDescript}, #{inventory}, #{price}, #{productContent})
   </insert>
+  <select id="getProduct" resultMap="ProductResult">
+  		select * from productResourceInfo where productName=#{0} and userID=#{1}
+  </select>
 </mapper> 

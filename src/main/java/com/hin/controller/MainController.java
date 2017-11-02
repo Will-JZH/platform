@@ -96,7 +96,6 @@ public class MainController
           resMap.put("result", "success");  
           return resMap;  
     }  
-        
     
     /**
      * 服务发布 获得删除服务页面的内容
@@ -428,8 +427,7 @@ public class MainController
 		rs.close();  
 		statement.close();  
 		connection.close(); 
-		
-		
+	
 		return results;
     }
     

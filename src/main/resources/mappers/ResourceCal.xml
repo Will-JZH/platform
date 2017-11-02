@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hin.dao.ResourceCalDao">
+
+  <resultMap type="com.hin.entity.ServiceResourceCal" id="ResourceCalResult">
+    <result property="calendarID" column="calendarID"/>
+    <result property="resourceID" column="resourceID"/>
+    <result property="startTime" column="startTime"/>
+    <result property="endTime" column="endTime" />
+  </resultMap>
+
+  <insert id="addResourceCal" parameterType="com.hin.entity.ServiceResourceCal">
+  		insert into serviceResourceCal (resourceID, startTime, endTime) 
+  		values(#{resourceID}, #{startTime}, #{endTime})
+  </insert>
+</mapper> 

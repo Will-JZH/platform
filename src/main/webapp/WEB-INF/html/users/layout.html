@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html lang="en" ng-app="AngularSpringmvcMybatis">
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>AngularSpringmvcMybatis App</title>
 <link rel="stylesheet"
 	href="/AngularSpringmvcMybatis/resources/css/app.css" />
@@ -127,12 +127,11 @@
 							<input ng-model="fee" style="width: 200px; height: 25px"><br><br>
 							服务具体内容：
 							<input ng-model="resourceContent" style="width: 200px; height: 25px"><br><br>
-							服务的起止时间：
+							服务可用时间：
 							<input style="height: 25px" type="date"
 								ng-model="startTime"> 至 <input style="height: 25px"
 								type="date" ng-model="endTime"><br>
 							<br>
-
 							<button style="margin-left: 100px" class="btn btn-primary"
 								ng-click="savePublish1()">发布加工能力</button>
 							<button ng-click="clearPublish1()" class="btn btn-primary">清空</button>
@@ -164,17 +163,19 @@
 				style="background-color: #E0E0E0; height: 495px">
 				<br>
 				<h4 style="margin-left: 100px">
-					<b>检索原子服务</b>
+					<b>需求发布与匹配</b>
 				</h4>
-				<br> <select
-					style="width: auto; height: 30px; margin-left: 45px; padding: 0 22%"
-					ng-model="searchType">
+				
+				<br><br>
+				<h4 style="margin-left: 100px">
+					<b>检索服务</b>
+				</h4><br>
+				<select style="width: 217px; height: 30px; margin-left: 45px" ng-model="searchType">
 					<option value="服务名称">服务名称</option>
 					<option value="企业名称">企业名称</option>
 					<option value="加工能力">加工能力</option>
-				</select><br>
-				<br> <input
-					style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center"
+				</select><br><br> 
+				<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center"
 					ng-model="serviceName"><br>
 				<br>
 				<button style="margin-left: 100px" class="btn btn-primary"

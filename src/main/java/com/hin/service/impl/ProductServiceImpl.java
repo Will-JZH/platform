@@ -18,15 +18,27 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public void addProduct(Map<String, Object> productInfo) {
+		String productName = productInfo.get("productName").toString();
+		Integer userID = Integer.parseInt(productInfo.get("userID").toString());
+		
 		Product product = new Product();
-		product.setProductName(productInfo.get("productName").toString());
-		product.setUserID(Integer.parseInt(productInfo.get("userID").toString()));
+		product.setProductName(productName);
+		product.setUserID(userID);
 		product.setProductDescript(productInfo.get("productDescript").toString());
 		product.setInventory(Integer.parseInt(productInfo.get("inventory").toString()));
 		product.setPrice(Double.parseDouble(productInfo.get("price").toString()));
 		product.setProductContent(productInfo.get("productContent").toString());
+	
+		Product exsitProduct = productDao.getProduct(productName, userID);
 		
-		productDao.addProduct(product);
+		if (exsitProduct == null) {
+			productDao.addProduct(product);
+		}
+	}
+
+	@Override
+	public Product getProduct(String productName, Integer userID) {
+		return productDao.getProduct(productName, userID);
 	}
 
 }

@@ -26,9 +26,9 @@ public class ResourceInfoController {
 		resourceInfoService.addServiceResource(params);
 	}
 	
-	@RequestMapping(value = "/getServiceResource", method = RequestMethod.GET)
+	@RequestMapping(value = "/getServiceResource/{resourceName}/{userID}", method = RequestMethod.GET)
     public @ResponseBody ServiceResourceInfo getServiceResource(
-    		@RequestBody Map<String, Object> params) throws Exception{
-		return resourceInfoService.getServiceResource(params.get("resourceName").toString(), Integer.parseInt(params.get("userID").toString()));
+    		@PathVariable String resourceName, @PathVariable Integer userID) throws Exception{
+		return resourceInfoService.getServiceResource(resourceName, userID);
 	}
 }
