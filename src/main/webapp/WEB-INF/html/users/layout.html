@@ -75,33 +75,28 @@
 							请输入产品单价：
 							<input ng-model="price" style="width: 200px; height: 25px"><br><br>
 							<div ng-show="machineTypePublish=='车床'">
-								<div ng-show="partCount>=1"> 
-									部件１: <input ng-model="part1" style="width: 200px; height: 25px"><br><br>
+								<div> 
+									主轴: <input ng-model="part1" style="width: 200px; height: 25px"><br><br>
 								</div>
-								<div ng-show="partCount>=2"> 
-									部件２: <input ng-model="part2" style="width: 200px; height: 25px"><br><br>
+								<div> 
+									床身: <input ng-model="part2" style="width: 200px; height: 25px"><br><br>
 								</div>
-								<div ng-show="partCount>=3">
-									部件３: <input ng-model="part3" style="width: 200px; height: 25px"><br><br>
+								<div>
+									床鞍: <input ng-model="part3" style="width: 200px; height: 25px"><br><br>
 								</div>
-								<div ng-show="partCount>=4">
-									部件４: <input ng-model="part4" style="width: 200px; height: 25px"><br><br>
+								<div>
+									三座: <input ng-model="part4" style="width: 200px; height: 25px"><br><br>
 								</div>
-								<div ng-show="partCount>=5"> 
-									部件５: <input ng-model="part5" style="width: 200px; height: 25px"><br><br>
+								<div> 
+									尾座: <input ng-model="part5" style="width: 200px; height: 25px"><br><br>
 								</div>
-								<div ng-show="partCount>=6">
-									部件６: <input ng-model="part6" style="width: 200px; height: 25px"><br><br>
+								<div>
+									滑板: <input ng-model="part6" style="width: 200px; height: 25px"><br><br>
 								</div>
-								<div ng-show="partCount>=7">
-									部件７: <input ng-model="part7" style="width: 200px; height: 25px"><br><br>
-								</div>
-								<div ng-show="partCount>=8">
-									部件８: <input ng-model="part8" style="width: 200px; height: 25px"><br><br>
-								</div>
-								<button style="margin-left: 100px" class="btn"
+					
+								<!-- <button style="margin-left: 100px" class="btn"
 									ng-click="countUp()">增加部件</button>
-								<button class="btn" ng-click="countDown()">减少部件</button>
+								<button class="btn" ng-click="countDown()">减少部件</button> -->
 							</div><br><br>
 							<button style="margin-left: 100px" class="btn btn-primary"
 								ng-click="savePublish0()">发布产品</button>
@@ -165,8 +160,30 @@
 				<h4 style="margin-left: 100px">
 					<b>需求发布与匹配</b>
 				</h4>
-				
+				<select style="width: 217px; height: 30px; margin-left: 45px" ng-model="demand">
+					<option value="产品">产品名称</option>
+					<option value="加工能力">加工能力</option>
+				</select>
 				<br><br>
+				<div ng-hide="demand=='加工能力'">
+					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center"
+						ng-model="productName"><br>
+					<br>
+					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center"
+						ng-model="productVersion"><br>
+					<br>
+					<button style="margin-left: 100px" class="btn btn-primary"
+						ng-click="publishProductDemand()">需求发布与匹配</button>
+				</div>
+				<div ng-show="demand=='加工能力'">
+					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center"
+						ng-model="procCapacity"><br>
+					<br>
+					<button style="margin-left: 100px" class="btn btn-primary"
+						ng-click="publishProcCapacityDemand()">需求发布与匹配</button>
+					<br>
+				</div>
+				
 				<h4 style="margin-left: 100px">
 					<b>检索服务</b>
 				</h4><br>
@@ -183,31 +200,75 @@
 			</div>
 			<div class="col-md-6">
 				<div style="height: 450px">
-					<table class="table table-bordered">
+					<table class="table table-bordered" ng-show="isProduct">
 						<thead>
 							<tr>
-								<th>服务名称</th>
-								<th>单价</th>
-								<th>时间</th>
-								<th>选择</th>
+								<th>产品名称</th>
+								<th>描述</th>
+								<th>内容</th>
+								<th>价格</th>
+								<th>库存</th>
+								<th>选择服务</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr ng-repeat="message in messages">
 								<td class="inbox-data col-md-4">
 									<div>
-										<span title="{{message['id']}}">{{message['serviceName']}}</span>
+										{{message['productName']}}
 									</div>
+								</td>
+								<td class="inbox-data">
+									<div>{{message['productDescript']}}</div>
+								</td>
+								<td class="inbox-data">
+									<div>{{message['productContent']}}</div>
 								</td>
 								<td class="inbox-data">
 									<div>{{message['price']}}</div>
 								</td>
 								<td class="inbox-data">
-									<div>{{message['time']}}</div>
+									<div>{{message['inventory']}}</div>
 								</td>
 								<td class="inbox-data col-md-2">
 									<button class="btn btn-primary dropdown-toggle"
-										ng-click="selectService(message.serviceName)">选择原子服务</button>
+										ng-click="selectService(message.serviceName)">选择服务</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<table class="table table-bordered" ng-hide='isProduct'>
+						<thead>
+							<tr>
+								<th>服务名称</th>
+								<th>描述</th>
+								<th>内容</th>
+								<th>价格</th>
+								<th>加工时间</th>
+								<th>选择服务</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="message in serviceMessages">
+								<td class="inbox-data">
+									<div>{{message['resourceName']}}</div>
+								</td>
+								<td class="inbox-data">
+									<div>{{message['description']}}</div>
+								</td>	
+								<td class="inbox-data">
+									<div>{{message['resourceContent']}}</div>
+								</td>
+								<td class="inbox-data">
+									<div>{{message['fee']}}</div>	
+								</td>
+								<td class="inbox-data">
+									<div>{{message['procTime']}}</div>
+								</td>
+								<td class="inbox-data col-md-2">
+									<button class="btn btn-primary dropdown-toggle"
+										ng-click="selectService(message.serviceName)">选择服务</button>
 								</td>
 							</tr>
 						</tbody>

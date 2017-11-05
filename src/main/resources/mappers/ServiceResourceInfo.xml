@@ -23,4 +23,8 @@
 		select * from serviceResourceInfo where resourceName = #{0} and userID=#{1}
   </select>
   
+  <select id="getServiceResourceByName" parameterType="java.lang.String" resultMap="ServiceResourceResult">
+		select * from serviceResourceInfo where resourceName like CONCAT(#{resourceName}, '%')
+  </select>
+  
 </mapper> 

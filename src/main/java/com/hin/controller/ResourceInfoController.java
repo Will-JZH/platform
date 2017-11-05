@@ -1,5 +1,6 @@
 package com.hin.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -30,5 +31,11 @@ public class ResourceInfoController {
     public @ResponseBody ServiceResourceInfo getServiceResource(
     		@PathVariable String resourceName, @PathVariable Integer userID) throws Exception{
 		return resourceInfoService.getServiceResource(resourceName, userID);
+	}
+	
+	@RequestMapping(value = "/getServiceResourceByName/{resourceName}", method = RequestMethod.GET)
+    public @ResponseBody List<ServiceResourceInfo> getServiceResourceByName(
+    		@PathVariable String resourceName) throws Exception{
+		return resourceInfoService.getServiceResourceByName(resourceName);
 	}
 }

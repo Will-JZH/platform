@@ -1,5 +1,6 @@
 package com.hin.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -39,6 +40,17 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product getProduct(String productName, Integer userID) {
 		return productDao.getProduct(productName, userID);
+	}
+
+	@Override
+	public List<Product> getProductByNameAndVersion(String productName) {
+		return productDao.getProductByNameAndVersion(productName);
+		
+	}
+
+	@Override
+	public List<Product> getProductByName(String productName) {
+		return productDao.getProductByName(productName);
 	}
 
 }

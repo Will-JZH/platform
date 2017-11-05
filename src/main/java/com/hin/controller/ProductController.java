@@ -1,5 +1,6 @@
 package com.hin.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -35,5 +36,17 @@ public class ProductController {
     public @ResponseBody Product getProduct(
     		@PathVariable String productName, @PathVariable Integer userID) throws Exception{
 		return productService.getProduct(productName, userID);
+    }
+	
+	@RequestMapping(value = "/getProductByNameAndVersion/{productName}", method = RequestMethod.GET)
+    public @ResponseBody List<Product> getProductByNameAndVersion(
+    		@PathVariable String productName) throws Exception{
+		return productService.getProductByNameAndVersion(productName);
+    }
+	
+	@RequestMapping(value = "/getProductByName/{productName}", method = RequestMethod.GET)
+    public @ResponseBody List<Product> getProductByName(
+    		@PathVariable String productName) throws Exception{
+		return productService.getProductByName(productName);
     }
 }

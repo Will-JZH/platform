@@ -18,17 +18,17 @@ var MainController = function($scope, $http) {
 	$scope.authority = paraObj["authority"];
 
 	// ********************产品发布为服务*****************//
-	$scope.partCount = 1;
-	$scope.countUp = function() {
-		if ($scope.partCount < 7) {
-			$scope.partCount += 1;
-		}
-	}
-	$scope.countDown = function() {
-		if ($scope.partCount > 1) {
-			$scope.partCount -= 1;
-		}
-	}
+//	$scope.partCount = 1;
+//	$scope.countUp = function() {
+//		if ($scope.partCount < 7) {
+//			$scope.partCount += 1;
+//		}
+//	}
+//	$scope.countDown = function() {
+//		if ($scope.partCount > 1) {
+//			$scope.partCount -= 1;
+//		}
+//	}
 
 	$scope.savePublish0 = function() {
 		var productContent = "";
@@ -205,6 +205,50 @@ var MainController = function($scope, $http) {
 	}
 
 	// ********************服务组合*********************//
+	$scope.isProduct = true;
+	$scope.publishProductDemand = function() {
+		if ($scope.productVersion != undefined && $scope.productVersion != '') {
+			$http.get("/AngularSpringmvcMybatis/product/getProductByNameAndVersion/" + $scope.productName + "(" + $scope.productVersion + ")").success( function(data) {
+				$scope.isProduct = true;
+				console.log(data);
+				$scope.messages = data;
+				if(!$scope.messages){
+					$http.get("/AngularSpringmvcMybatis/product/getProductByName/" + $scope.productName).success(function(data) {
+						$scope.isProduct = true;
+						console.log(data);
+						$scope.messages = data;
+						if (!$scope.messages) {
+							$http.get("/AngularSpringmvcMybatis/resource/getServiceResourceByName/" + $scope.productName).success(function(data) {
+								$scope.isProduct = false;
+								console.log(data);
+								$scope.serviceMessages = data;
+							})
+						}
+					})
+				}
+			})
+		}
+		else {
+			$http.get("/AngularSpringmvcMybatis/product/getProductByName/" + $scope.productName).success(function(data) {
+				$scope.isProduct = true;
+				console.log(data);
+				$scope.messages = data;
+				console.log($scope.messages.productName);
+				if ($scope.messages.length == 0) {
+					$http.get("/AngularSpringmvcMybatis/resource/getServiceResourceByName/" + $scope.productName).success(function(data) {
+						$scope.isProduct = false;
+						console.log(data);
+						$scope.serviceMessages = data;
+						console.log("serviceMessages : " + $scope.serviceMessages);
+					})
+				}
+			})
+			
+		}
+	}
+	
+	
+	
 	$scope.messages = "";
 	$scope.serviceName = "";
 	$scope.searchType = "服务名称";

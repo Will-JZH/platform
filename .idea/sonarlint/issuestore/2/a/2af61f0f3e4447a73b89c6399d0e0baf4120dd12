@@ -1,0 +1,113 @@
+
+nsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(…­¥—
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(±¥ıÜ
+L
+squid:S106"9Replace this use of System.out or System.err by a logger.(ƒ¹è
+Ssquid:S1854">Remove this useless assignment to local variable "driverName".(¢î·À
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(„öŞœ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(‚ÓÈª
+Dsquid:S1481"/Remove this unused "driverName" local variable.(¢î·À
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(´³£ªıÿÿÿÿ
+Csquid:S2095".Close this "Connection" in a "finally" clause.(´ ‡Ö
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Šå†úÿÿÿÿ
+gsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Êÿš÷
+nsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(˜Äèš
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¢øÆŞşÿÿÿÿ
+Lsquid:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+Dsquid:S1481"/Remove this unused "driverName" local variable.(¢î·À
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ò‡Ü“ıÿÿÿÿ
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÚÖõùøÿÿÿÿ
+Dsquid:S1481"/Remove this unused "driverName" local variable.(¢î·À
+:squid:S2068" Remove this hard-coded password.(¯áµƒûÿÿÿÿ
+`squid:S1192"KDefine a constant instead of duplicating this literal "&password=" 8 times.(ê¢±™
+Dsquid:S1481"/Remove this unused "driverName" local variable.(¢î·À
+\squid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(Ñğ—¿
+Ssquid:S1854">Remove this useless assignment to local variable "driverName".(¢î·À
+Ssquid:S1854">Remove this useless assignment to local variable "driverName".(¢î·À
+]squid:S1192"HDefine a constant instead of duplicating this literal "      }" 3 times.(Å’áú
+msquid:S1192"XDefine a constant instead of duplicating this literal "jdbc:mysql://localhost/" 8 times.(ê¢±™
+\squid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(Ñğ—¿
+\squid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ŞĞÿ
+Ssquid:S1854">Remove this useless assignment to local variable "driverName".(¢î·À
+:squid:S2068" Remove this hard-coded password.(¯áµƒûÿÿÿÿ
+Dsquid:S1481"/Remove this unused "driverName" local variable.(¢î·À
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ï„ö÷ûÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(•¥©’
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Šå†úÿÿÿÿ
+Csquid:S2095".Close this "Connection" in a "finally" clause.(´ ‡Ö
+asquid:S1192"GDefine a constant instead of duplicating this literal "893893" 8 times.(¯áµƒûÿÿÿÿ
+Ssquid:S1854">Remove this useless assignment to local variable "driverName".(¢î·À
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆÑ…¢úÿÿÿÿ
+Ssquid:S1854">Remove this useless assignment to local variable "driverName".(¢î·À
+Csquid:S2095".Close this "Connection" in a "finally" clause.(´ ‡Ö
+:squid:S2068" Remove this hard-coded password.(¯áµƒûÿÿÿÿ
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ÒöìŸûÿÿÿÿ
+”squid:S1192"zDefine a constant instead of duplicating this literal "	   ?b1 owl:someValuesFrom products:ä¼ä¸šåŸºæœ¬ä¿¡æ¯ . " 3 times.(é¾Üğúÿÿÿÿ
+:squid:S2068" Remove this hard-coded password.(¯áµƒûÿÿÿÿ
+\squid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ŞĞÿ
+Csquid:S2095".Close this "Connection" in a "finally" clause.(´ ‡Ö
+:squid:S2068" Remove this hard-coded password.(¯áµƒûÿÿÿÿ
+Šsquid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÒöìŸûÿÿÿÿ
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(ğù•øÿÿÿÿ
+Ssquid:S1854">Remove this useless assignment to local variable "driverName".(¢î·À
+Csquid:S2095".Close this "Connection" in a "finally" clause.(´ ‡Ö
+…squid:S1192"kDefine a constant instead of duplicating this literal "	   products:ä¼ä¸š rdfs:subClassOf ?b1 . " 3 times.(Î«íüÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(„öŞœ
+Dsquid:S1481"/Remove this unused "driverName" local variable.(¢î·À
+vsquid:S1192"bDefine a constant instead of duplicating this literal "      ?enterprise rdf:type ?b1 . " 3 times.(è¾Ä
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(£úÉ‰øÿÿÿÿ
+nsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ì¶æÈ
+lsquid:S1192"WDefine a constant instead of duplicating this literal "com.mysql.jdbc.Driver" 16 times.(¢î·À
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(„öŞœ
+Dsquid:S1481"/Remove this unused "driverName" local variable.(¢î·À
+1squid:S1643"Use a StringBuilder instead.(úõ®Ò
+Dsquid:S1481"/Remove this unused "driverName" local variable.(¢î·À
+isquid:S00100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( äóúÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(úüßá
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(×Ğ‰£ÿÿÿÿÿ
+ssquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆÑ…¢úÿÿÿÿ
+hsquid:S1192"NDefine a constant instead of duplicating this literal "cloudplatform" 8 times.(– ‚ëüÿÿÿÿ
+\squid:S1192"GDefine a constant instead of duplicating this literal "?user=" 8 times.(ê¢±™
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Éæşÿÿÿÿ
+L
+squid:S106"9Replace this use of System.out or System.err by a logger.(ğ÷†T
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(ï‚Üÿ
+Csquid:S2095".Close this "Connection" in a "finally" clause.(´ ‡Ö
+Csquid:S2095".Close this "Connection" in a "finally" clause.(´ ‡Ö
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(Î­¢üÿÿÿÿ
+asquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ÁÔ³Äùÿÿÿÿ
+6squid:S1643"Use a StringBuilder instead.(ÕÂŠşùÿÿÿÿ
+…squid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(€¨‰‰
+\squid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(Ñğ—¿
+ƒsquid:S1192"nDefine a constant instead of duplicating this literal "PREFIX owl: <http://www.w3.org/2002/07/owl#> " 3 times.(¯ú¼ò
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(´Ôò¢ûÿÿÿÿ
+]squid:S1192"HDefine a constant instead of duplicating this literal "WHERE {" 3 times.(ò­Ÿ
+nsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Âß ²
+:squid:S2068" Remove this hard-coded password.(¯áµƒûÿÿÿÿ
+csquid:S1192"ODefine a constant instead of duplicating this literal "SELECT * FROM " 6 times.(¨äéc
+squid:S1192"vDefine a constant instead of duplicating this literal "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> " 3 times.(Œ‹¼±úÿÿÿÿ
+Šsquid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(£úÉ‰øÿÿÿÿ
+:squid:S2068" Remove this hard-coded password.(¯áµƒûÿÿÿÿ
+:squid:S2068" Remove this hard-coded password.(¯áµƒûÿÿÿÿ
+Ssquid:S1854">Remove this useless assignment to local variable "driverName".(¢î·À
+lsquid:S2077"RUse a variable binding mechanism to construct this query instead of concatenation.(”ª«ïûÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(„öŞœ
+squid:S1192"{Define a constant instead of duplicating this literal "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " 3 times.(¯¯ À
+\squid:S1192"GDefine a constant instead of duplicating this literal "\', \'" 3 times.(Ò¢å
+Šsquid:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÁÔ³Äùÿÿÿÿ
+«squid:S1192"Define a constant instead of duplicating this literal "PREFIX products: <http://www.semanticweb.org/jzh/ontologies/2016/10/products#> " 3 times.(ãÂ­µıÿÿÿÿ
+Csquid:S2095".Close this "Connection" in a "finally" clause.(´ ‡Ö

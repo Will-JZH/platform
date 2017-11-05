@@ -228,7 +228,7 @@ public class MainController
 		}
 		   
 		ResultSet rs = statement.executeQuery(sql);  
-		
+
 		while (rs.next()) {
 			HashMap<String, String> resultMap = new HashMap<String, String>();
 			resultMap.put("id", rs.getString(1));

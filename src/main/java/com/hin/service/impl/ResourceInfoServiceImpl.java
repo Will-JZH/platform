@@ -1,5 +1,6 @@
 package com.hin.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -40,6 +41,11 @@ public class ResourceInfoServiceImpl implements ResourceInfoService {
 	@Override
 	public ServiceResourceInfo getServiceResource(String resourceName, Integer userID) {
 		return resourceInfoDao.getServiceResource(resourceName, userID);
+	}
+
+	@Override
+	public List<ServiceResourceInfo> getServiceResourceByName(String resourceName) {
+		return resourceInfoDao.getServiceResourceByName(resourceName);
 	}
 
 }

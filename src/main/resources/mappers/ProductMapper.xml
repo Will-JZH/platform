@@ -21,4 +21,10 @@
   <select id="getProduct" resultMap="ProductResult">
   		select * from productResourceInfo where productName=#{0} and userID=#{1}
   </select>
+  <select id="getProductByNameAndVersion" parameterType="java.lang.String"  resultMap="ProductResult">
+  		select * from productResourceInfo where productName like CONCAT(#{productName}, '%')
+  </select>
+  <select id="getProductByName" parameterType="java.lang.String" resultMap="ProductResult">
+  		select * from productResourceInfo where productName like CONCAT(#{productName}, '%')
+  </select>
 </mapper> 
