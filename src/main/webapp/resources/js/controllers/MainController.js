@@ -292,6 +292,8 @@ var MainController = function($scope, $http) {
 	$scope.services = new Array();
 	$scope.compositeServiceName = "";
 	$scope.selectService = function(serviceName) {
+		console.log("ss");
+		console.log(serviceName);
 		$scope.services.push(serviceName);
 	};
 
