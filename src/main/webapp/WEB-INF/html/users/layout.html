@@ -21,7 +21,7 @@
 	<div class="tab-content">
 		<div class="tab-pane fade in active" id="服务发布">
 			<div class="col-md-3"
-				style="background-color: #E0E0E0; height: 495px;">
+				style="background-color: #E0E0E0; height: 700px;">
 				<h4 style="margin-left: 80px">
 					<b>高级发布选项</b>
 				</h4>
@@ -51,9 +51,9 @@
 					<button id="删除服务" ng-click="deleteService = true" class="btn">删除服务</button>
 					<div style="margin-left: 200px" id="发布服务页面" ng-hide="deleteService">
 						<input type="radio" ng-model="publishType" name="publishType" value=0>产品发布为服务
-						<input type="radio" ng-model="publishType" name="publishType" value=1>加工能力发布为服务 <br><br>
+						<input type="radio" ng-model="publishType" name="publishType" value=1>制造能力发布为服务 <br><br>
 						<div ng-show="publishType==0">
-							请选择发布的机床： <select ng-model="machineTypePublish"
+							<!-- 请选择发布的机床： <select ng-model="machineTypePublish"
 								style="width: 200px; height: 25px">
 								<option value="车床">车床</option>
 								<option value="刨床">刨床</option>
@@ -62,19 +62,42 @@
 								<option value="镗床">镗床</option>
 								<option value="钻床">钻床</option>
 								<option value="钳床">钳床</option>
-							</select><br>
-							<br> 请输入机床型号：<input ng-model="machineVersion"
-								placeholder="机床型号" style="width: 200px; height: 25px"><br>
+							</select><br> -->
+							请选择发布产品：<input ng-model="product" style="width: 200px; height: 25px" ng-mousedown="productTree=true"><br>
+							<div ng-show="productTree" style="position:absolute;width:350px;height:200px;background-color:#fff	;border:1px solid #2e6da4">
+								<ul>
+									<li>
+										<span ng-click="product='车床';productTree=false">车床</span>
+										<ul>
+											<li ng-click="product='车床-主轴';productTree=false">主轴</li>
+											<li ng-click="product='车床—床身';productTree=false">床身</li>
+											<li ng-click="product='车床—床鞍';productTree=false">床鞍</li>
+											<li ng-click="product='车床—三座';productTree=false">三座</li>
+											<li ng-click="product='车床—尾座';productTree=false">尾座</li>
+											<li ng-click="product='车床—滑板';productTree=false">滑板</li>
+										</ul>
+									</li>
+									<li>
+										<span ng-click="product='铣床';productTree=false">铣床</span>
+										<ul>
+											<li ng-click="product='铣床-主轴';productTree=false">主轴</li>
+											<li ng-click="product='铣床—床身';productTree=false">床身</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<br> 请输入产品型号：<input ng-model="machineVersion"
+								placeholder="产品型号" style="width: 200px; height: 25px"><br>
 							<br>
 							请输入产品描述：
-							<textarea ng-model="serviceDescribe" placeholder="服务描述"
+							<textarea ng-model="serviceDescribe" placeholder="产品描述"
 								style="width: 200px"></textarea>
 							<br>
 							请输入库存信息：
 							<input ng-model="inventory" placeholder="库存余量" style="width: 200px; height: 25px"><br><br>
 							请输入产品单价：
 							<input ng-model="price" style="width: 200px; height: 25px"><br><br>
-							<div ng-show="machineTypePublish=='车床'">
+							<!-- <div ng-show="machineTypePublish=='车床'">
 								<div> 
 									主轴: <input ng-model="part1" style="width: 200px; height: 25px"><br><br>
 								</div>
@@ -94,26 +117,73 @@
 									滑板: <input ng-model="part6" style="width: 200px; height: 25px"><br><br>
 								</div>
 					
-								<!-- <button style="margin-left: 100px" class="btn"
+								<button style="margin-left: 100px" class="btn"
 									ng-click="countUp()">增加部件</button>
-								<button class="btn" ng-click="countDown()">减少部件</button> -->
-							</div><br><br>
+								<button class="btn" ng-click="countDown()">减少部件</button>
+							</div><br><br> -->
 							<button style="margin-left: 100px" class="btn btn-primary"
 								ng-click="savePublish0()">发布产品</button>
 							<button ng-click="clearPublish0()" class="btn btn-primary">清空</button>
 						</div>
 						<div ng-show="publishType==1">
 							<br>
-							服务加工类型： 
+							<!-- 服务加工类型： 
 							<select ng-model="serviceType"
 								style="width: 200px; height: 25px">
 								<option value="毛坯加工">毛坯加工</option>
 								<option value="粗加工">粗加工</option>
 								<option value="精加工">精加工</option>
 								<option value="质检">质检</option>
-							</select><br><br>
-							加工对象：
-							<input ng-model="serviceObj" style="width: 200px; height: 25px"><br><br>
+							</select><br><br> -->
+							服务加工类型：<input ng-model="manufacType" style="width: 200px; height: 25px" ng-mousedown="capicityTree=true">
+							<div ng-show="capicityTree" style="position:absolute;width:350px;height:200px;background-color:#fff;border:1px solid #2e6da4">
+								<ul>
+									<li>
+										<span ng-click="manufacType='机加工';capicityTree=false">机加工</span>
+										<ul>
+											<li ng-click="manufacType='毛坯加工';capicityTree=false">毛坯加工</li>
+											<li ng-click="manufacType='粗加工';capicityTree=false">粗加工</li>
+											<li ng-click="manufacType='精加工';capicityTree=false">精加工</li>
+											<li ng-click="manufacType='质检';capicityTree=false">质检</li>
+										</ul>
+									</li>
+									<li>
+										<span ng-click="manufacType='装配';capicityTree=false">装配</span>
+										<ul>
+											<li ng-click="manufacType='部装';capicityTree=false">部装</li>
+											<li ng-click="manufacType='总装';capicityTree=false">总装</li>
+										</ul>
+									</li>
+								</ul>
+							</div><br><br>
+							
+							
+							制造能力对象：<input ng-model="manufacObj" style="width: 200px; height: 25px" ng-mousedown="capicityObjTree=true">
+							<div ng-show="capicityObjTree" style="position:absolute;width:350px;height:200px;background-color:#fff	;border:1px solid #2e6da4">
+								<ul>
+									<li>
+										<span ng-click="manufacObj='车床';capicityObjTree=false">车床</span>
+										<ul>
+											<li ng-click="manufacObj='车床-主轴';capicityObjTree=false">主轴</li>
+											<li ng-click="manufacObj='车床—床身';capicityObjTree=false">床身</li>
+											<li ng-click="manufacObj='车床—床鞍';capicityObjTree=false">床鞍</li>
+											<li ng-click="manufacObj='车床—三座';capicityObjTree=false">三座</li>
+											<li ng-click="manufacObj='车床—尾座';capicityObjTree=false">尾座</li>
+											<li ng-click="manufacObj='车床—滑板';capicityObjTree=false">滑板</li>
+										</ul>
+									</li>
+									<li>
+										<span ng-click="manufacObj='铣床';capicityObjTree=false">铣床</span>
+										<ul>
+											<li ng-click="manufacObj='铣床-主轴';capicityObjTree=false">主轴</li>
+											<li ng-click="manufacObj='铣床—床身';capicityObjTree=false">床身</li>
+										</ul>
+									</li>
+								</ul>
+							</div><br><br>
+							
+							<!-- 加工对象：
+							<input ng-model="serviceObj" style="width: 200px; height: 25px"><br><br> -->
 							服务描述：
 							<input ng-model="serviceDescription" style="width: 200px; height: 25px"><br><br>
 							服务执行所需时间：
@@ -128,7 +198,7 @@
 								type="date" ng-model="endTime"><br>
 							<br>
 							<button style="margin-left: 100px" class="btn btn-primary"
-								ng-click="savePublish1()">发布加工能力</button>
+								ng-click="savePublish1()">发布制造能力</button>
 							<button ng-click="clearPublish1()" class="btn btn-primary">清空</button>
 						</div>
 					</div>
@@ -162,21 +232,21 @@
 				</h4>
 				<select style="width: 217px; height: 30px; margin-left: 45px" ng-model="demand">
 					<option value="产品">产品名称</option>
-					<option value="加工能力">加工能力</option>
+					<option value="加工能力">制造能力</option>
 				</select>
 				<br><br>
 				<div ng-hide="demand=='加工能力'">
-					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center"
+					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center" placeholder="请输入产品名称"
 						ng-model="productName"><br>
 					<br>
-					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center"
+					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center" placeholder="请输入产品型号"
 						ng-model="productVersion"><br>
 					<br>
 					<button style="margin-left: 100px" class="btn btn-primary"
 						ng-click="publishProductDemand()">需求发布与匹配</button>
 				</div>
 				<div ng-show="demand=='加工能力'">
-					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center"
+					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center" placeholder="请输入制造能力"
 						ng-model="procCapacity"><br>
 					<br>
 					<button style="margin-left: 100px" class="btn btn-primary"
@@ -184,7 +254,7 @@
 					<br>
 				</div>
 				
-				<h4 style="margin-left: 100px">
+				<!-- <h4 style="margin-left: 100px">
 					<b>检索服务</b>
 				</h4><br>
 				<select style="width: 217px; height: 30px; margin-left: 45px" ng-model="searchType">
@@ -196,7 +266,7 @@
 					ng-model="serviceName"><br>
 				<br>
 				<button style="margin-left: 100px" class="btn btn-primary"
-					ng-click="getServiceInfo(1)">服务检索</button>
+					ng-click="getServiceInfo(1)">服务检索</button> -->
 			</div>
 			<div class="col-md-6">
 				<div style="height: 450px">
@@ -232,7 +302,7 @@
 								</td>
 								<td class="inbox-data col-md-2">
 									<button class="btn btn-primary dropdown-toggle"
-										ng-click="selectService(message.serviceName)">选择服务</button>
+										ng-click="selectProduct(message.productName)">选择产品</button>
 								</td>
 							</tr>
 						</tbody>
@@ -268,7 +338,7 @@
 								</td>
 								<td class="inbox-data col-md-2">
 									<button class="btn btn-primary dropdown-toggle"
-										ng-click="selectService(message.serviceName)">选择服务</button>
+										ng-click="selectService(message.resourceName)">选择服务</button>
 								</td>
 							</tr>
 						</tbody>
@@ -288,7 +358,6 @@
 					<h4 style="margin-left: 80px">
 						<b>定制组合服务</b>
 					</h4>
-					目前只支持顺序结构
 					<div style="height: 350px; background: #fff; overflow: auto">
 						<table class="table">
 							<tbody>
