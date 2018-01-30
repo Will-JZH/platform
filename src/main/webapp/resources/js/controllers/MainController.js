@@ -394,4 +394,13 @@ var MainController = function($scope, $http) {
 			alert("error..." + status);
 		});
 	};
+	
+	//========================服务指标＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+	$scope.getSimedService = function() {
+		console.log("查找组合服务");
+		console.log($scope.simedServiceName);
+		$http.get("simed/getCompositeServiceInfo/" + $scope.simedServiceName).success(function(data) {
+			$scope.simedServiceInfo = data;
+		});
+	}
 }
