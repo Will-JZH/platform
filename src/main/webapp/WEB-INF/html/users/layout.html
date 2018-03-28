@@ -1,549 +1,357 @@
 ﻿<!doctype html>
 <html lang="en" ng-app="AngularSpringmvcMybatis">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>AngularSpringmvcMybatis App</title>
-<link rel="stylesheet"
-	href="/AngularSpringmvcMybatis/resources/css/app.css" />
-<link rel="stylesheet"
-	href="/AngularSpringmvcMybatis/resources/bootstrap/css/bootstrap.min.css">
+	<meta charset="utf-8">
+	<title>AngularSpringmvcMybatis App</title>
+	<link rel="stylesheet" href="/AngularSpringmvcMybatis/resources/css/app.css"/>
+	<link rel="stylesheet" href="/AngularSpringmvcMybatis/resources/bootstrap/css/bootstrap.min.css">
+
 </head>
 <body ng-controller="MainController">
-	<h1>
-		云平台 <small>——626实验室云服务平台</small>
-	</h1>
-	<hr>
-	<ul class="nav nav-tabs">
-		<li ng-show="authority != 1"><a href="#服务发布" data-toggle="tab">服务发布</a></li>
-		<li><a href="#服务组合" data-toggle="tab">服务组合</a></li>
-		<li><a href="#服务评价" data-toggle="tab">服务评价</a></li>
-	</ul>
-	<div class="tab-content">
-		<div class="tab-pane fade in active" id="服务发布">
-			<div class="col-md-3"
-				style="background-color: #E0E0E0; height: 700px;">
-				<h4 style="margin-left: 80px">
-					<b>高级发布选项</b>
-				</h4>
-				<input placeholder="请输入WSDL路径" ng-model="wsdlPath"
-					style="width: 200px; margin-left: 40px"><br>
-				<br> <span style="margin-left: 40px">上传OWL文件： </span>
-				<form ng-submit="uploadFile()" class="form-horizontal"
-					enctype="multipart/form-data">
-					<input style="margin-left: 40px; width: 200px" type="file"
-						name="file" class="btn btn-primary" ng-model="document.fileInput"
-						id="file"
-						onchange="document.getElementById('filepath').value=this.value;" /><br>
-					<input style="margin-left: 40px; width: 200px" ng-disabled="true"
-						placeholder="所选文件路径" name="filepath" id="filepath" /><br>
+<h1>云平台  <small>——626实验室云服务平台</small> </h1>
+<hr>
+<ul class="nav nav-tabs">
+	<li><a href="#服务发布" data-toggle="tab">服务发布</a></li>
+	<li><a href="#服务组合" data-toggle="tab">服务组合</a></li>
+	<li><a href="#服务评价" data-toggle="tab">服务评价</a></li>
+	<li><a href="#服务指标" data-toggle="tab">服务指标</a></li>
+</ul>
+<div class="tab-content">
+	<div class="tab-pane fade in active" id="服务发布">
+		<div class="col-md-3" style="background-color:#E0E0E0; height:495px;">
+			<h4 style="margin-left:80px"><b>高级发布选项</b></h4>
+			<input placeholder="请输入WSDL路径" ng-model="wsdlPath" style="width:200px;margin-left:40px"><br><br>
+			<span style="margin-left:40px">上传OWL文件： </span>
+			<form ng-submit="uploadFile()" class="form-horizontal" enctype="multipart/form-data">
+				<input style="margin-left:40px;width:200px" type="file" name="file" class="btn btn-primary" ng-model="document.fileInput" id="file" onchange="document.getElementById('filepath').value=this.value;" /><br>
+				<input style="margin-left:40px;width:200px" ng-disabled="true" placeholder="所选文件路径" name="filepath" id="filepath" /><br><br>
+				<button style="margin-left:110px" class="btn btn-primary" type="submit">提交</button>
+			</form>
+		</div>
+		<div class="col-md-9">
+			<div>
+				<h4 style="margin-left:300px"><b>初级发布选项</b></h4>
+				<button id="发布服务" ng-click="deleteService = false" class="btn btn-primary">发布服务</button> <button id="删除服务" ng-click="deleteService = true" class="btn">删除服务</button>
+				<div style="margin-left:200px" id="发布服务页面" ng-hide="deleteService">
 					<br>
-					<button style="margin-left: 110px" class="btn btn-primary"
-						type="submit">提交</button>
-				</form>
+					请输入企业名称：<input placeholder="企业名称" ng-model="enterpriseName" style="width:200px;height:25px"><br><br>
+					请选择发布的机床：
+					<select ng-model="machineTypePublish" style="width:200px;height:25px">
+						<option value="车床">车床</option>
+						<option value="刨床">刨床</option>
+						<option value="磨床">磨床</option>
+						<option value="铣床">铣床</option>
+						<option value="镗床">镗床</option>
+						<option value="钻床">钻床</option>
+						<option value="钳床">钳床</option>
+					</select><br><br>
+					请输入机床型号：<input ng-model="machineVersion" placeholder="机床型号" style="width:200px;height:25px"><br><br>
+					请选择加工能力：
+					<select ng-model="partType" style="height:25px">
+						<option value="回转体">回转体</option>
+						<option value="板件">板件</option>
+						<option value="箱体">箱体</option>
+						<option value="连杆">连杆</option>
+						<option value="齿轮">齿轮</option>
+					</select>
+					<select ng-model="shapeType" style="height:25px">
+						<option value="圆">圆</option>
+						<option value="孔">孔</option>
+						<option value="平面">平面</option>
+						<option value="曲面">曲面</option>
+						<option value="槽">槽</option>
+						<option value="端面">端面</option>
+						<option value="螺纹">螺纹</option>
+					</select>
+					<select ng-model="technologyType" style="height:25px">
+						<option value="车">车</option>
+						<option value="刨">刨</option>
+						<option value="磨">磨</option>
+						<option value="铣">铣</option>
+						<option value="镗">镗</option>
+						<option value="钻">钻</option>
+						<option value="绞">绞</option>
+					</select><br><br>
+					请输入尺寸精度：<input ng-model="size" placeholder="尺寸精度，例如：20cm-2mm" style="width:200px;height:25px"><br><br>
+					请输入服务描述：<textarea ng-model="serviceDescribe" placeholder="服务描述" style="width:200px"></textarea><br><br>
+					服务的起止时间：<input style="height:25px" type="date" ng-model="startTime"> 至 <input style="height:25px" type="date" ng-model="endTime"><br><br>
+
+					<button style="margin-left:100px" class="btn btn-primary" ng-mdoel="savePublish()">保存并发布</button>
+					<button ng-click="clearPublish()" class="btn btn-primary">清空</button>
+				</div>
+				<div style="margin-left:200px" id="删除服务页面" ng-show="deleteService">
+					<br>
+
+					请选择企业：
+					<select ng-model="enterprise" ng-options="x for x in enterprises" style="width:200px;height:30px">
+					</select><br><br>
+					请选择机床：
+					<select ng-model="machine" ng-options="y for y in machines" style="width:200px;height:30px">
+					</select><br><br>
+					请选择机床型号：
+					<select ng-model="machineType" ng-options="z for z in machineTypes" style="width:200px;height:30px">
+					</select><br><br>
+					<button style="margin-left:100px" class="btn btn-danger" ng-click="deleteService()">确认删除</button>
+					<button class="btn btn-primary" ng-click="cancelDelete()">取消</button>
+				</div>
 			</div>
-			<div class="col-md-9">
-				<div>
-					<h4 style="margin-left: 300px">
-						<b>初级发布选项</b>
-					</h4>
-					<button id="发布服务" ng-click="deleteService = false"
-						class="btn btn-primary">发布服务</button>
-					<button id="删除服务" ng-click="deleteService = true" class="btn">删除服务</button>
-					<div style="margin-left: 200px" id="发布服务页面" ng-hide="deleteService">
-						<input type="radio" ng-model="publishType" name="publishType" value=0>产品发布为服务
-						<input type="radio" ng-model="publishType" name="publishType" value=1>制造能力发布为服务 <br><br>
-						<div ng-show="publishType==0">
-							<!-- 请选择发布的机床： <select ng-model="machineTypePublish"
-								style="width: 200px; height: 25px">
-								<option value="车床">车床</option>
-								<option value="刨床">刨床</option>
-								<option value="磨床">磨床</option>
-								<option value="铣床">铣床</option>
-								<option value="镗床">镗床</option>
-								<option value="钻床">钻床</option>
-								<option value="钳床">钳床</option>
-							</select><br> -->
-							请选择发布产品：<input ng-model="product" style="width: 200px; height: 25px" ng-mousedown="productTree=true"><br>
-							<div ng-show="productTree" style="position:absolute;width:350px;height:200px;background-color:#fff	;border:1px solid #2e6da4">
-								<ul>
-									<li>
-										<span ng-click="product='车床';productTree=false">车床</span>
-										<ul>
-											<li ng-click="product='车床-主轴';productTree=false">主轴</li>
-											<li ng-click="product='车床—床身';productTree=false">床身</li>
-											<li ng-click="product='车床—床鞍';productTree=false">床鞍</li>
-											<li ng-click="product='车床—三座';productTree=false">三座</li>
-											<li ng-click="product='车床—尾座';productTree=false">尾座</li>
-											<li ng-click="product='车床—滑板';productTree=false">滑板</li>
-										</ul>
-									</li>
-									<li>
-										<span ng-click="product='铣床';productTree=false">铣床</span>
-										<ul>
-											<li ng-click="product='铣床-主轴';productTree=false">主轴</li>
-											<li ng-click="product='铣床—床身';productTree=false">床身</li>
-										</ul>
-									</li>
-								</ul>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="服务组合">
+		<div class="col-md-3" style="background-color:#E0E0E0; height:495px">
+			<br>
+			<h4 style="margin-left:100px"><b>检索原子服务</b></h4><br>
+			<select style="width:auto;height:30px;margin-left:45px;padding:0 22%" ng-model="searchType">
+				<option value="服务名称">服务名称</option>
+				<option value="企业名称">企业名称</option>
+				<option value="加工能力">加工能力</option>
+			</select><br><br>
+			<input style="width:217px;height:30px;margin-left:45px;text-align:center;align:center" ng-model="serviceName"><br><br>
+			<button style="margin-left:100px" class="btn btn-primary" ng-click="getServiceInfo(1)">服务检索</button>
+		</div>
+		<div class="col-md-6">
+			<div style="height:450px">
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th>服务名称</th>
+						<th>单价</th>
+						<th>时间</th>
+						<th>选择</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="message in messages">
+						<td class="inbox-data col-md-4">
+							<div>
+								<span title="{{message['id']}}">{{message['serviceName']}}</span>
 							</div>
-							<br> 请输入产品型号：<input ng-model="machineVersion"
-								placeholder="产品型号" style="width: 200px; height: 25px"><br>
-							<br>
-							请输入产品描述：
-							<textarea ng-model="serviceDescribe" placeholder="产品描述"
-								style="width: 200px"></textarea>
-							<br>
-							请输入库存信息：
-							<input ng-model="inventory" placeholder="库存余量" style="width: 200px; height: 25px"><br><br>
-							请输入产品单价：
-							<input ng-model="price" style="width: 200px; height: 25px"><br><br>
-							<!-- <div ng-show="machineTypePublish=='车床'">
-								<div> 
-									主轴: <input ng-model="part1" style="width: 200px; height: 25px"><br><br>
-								</div>
-								<div> 
-									床身: <input ng-model="part2" style="width: 200px; height: 25px"><br><br>
-								</div>
-								<div>
-									床鞍: <input ng-model="part3" style="width: 200px; height: 25px"><br><br>
-								</div>
-								<div>
-									三座: <input ng-model="part4" style="width: 200px; height: 25px"><br><br>
-								</div>
-								<div> 
-									尾座: <input ng-model="part5" style="width: 200px; height: 25px"><br><br>
-								</div>
-								<div>
-									滑板: <input ng-model="part6" style="width: 200px; height: 25px"><br><br>
-								</div>
-					
-								<button style="margin-left: 100px" class="btn"
-									ng-click="countUp()">增加部件</button>
-								<button class="btn" ng-click="countDown()">减少部件</button>
-							</div><br><br> -->
-							<button style="margin-left: 100px" class="btn btn-primary"
-								ng-click="savePublish0()">发布产品</button>
-							<button ng-click="clearPublish0()" class="btn btn-primary">清空</button>
-						</div>
-						<div ng-show="publishType==1">
-							<br>
-							<!-- 服务加工类型： 
-							<select ng-model="serviceType"
-								style="width: 200px; height: 25px">
-								<option value="毛坯加工">毛坯加工</option>
-								<option value="粗加工">粗加工</option>
-								<option value="精加工">精加工</option>
-								<option value="质检">质检</option>
-							</select><br><br> -->
-							服务加工类型：<input ng-model="manufacType" style="width: 200px; height: 25px" ng-mousedown="capicityTree=true">
-							<div ng-show="capicityTree" style="position:absolute;width:350px;height:200px;background-color:#fff;border:1px solid #2e6da4">
-								<ul>
-									<li>
-										<span ng-click="manufacType='机加工';capicityTree=false">机加工</span>
-										<ul>
-											<li ng-click="manufacType='毛坯加工';capicityTree=false">毛坯加工</li>
-											<li ng-click="manufacType='粗加工';capicityTree=false">粗加工</li>
-											<li ng-click="manufacType='精加工';capicityTree=false">精加工</li>
-											<li ng-click="manufacType='质检';capicityTree=false">质检</li>
-										</ul>
-									</li>
-									<li>
-										<span ng-click="manufacType='装配';capicityTree=false">装配</span>
-										<ul>
-											<li ng-click="manufacType='部装';capicityTree=false">部装</li>
-											<li ng-click="manufacType='总装';capicityTree=false">总装</li>
-										</ul>
-									</li>
-								</ul>
-							</div><br><br>
-							
-							
-							制造能力对象：<input ng-model="manufacObj" style="width: 200px; height: 25px" ng-mousedown="capicityObjTree=true">
-							<div ng-show="capicityObjTree" style="position:absolute;width:350px;height:200px;background-color:#fff	;border:1px solid #2e6da4">
-								<ul>
-									<li>
-										<span ng-click="manufacObj='车床';capicityObjTree=false">车床</span>
-										<ul>
-											<li ng-click="manufacObj='车床-主轴';capicityObjTree=false">主轴</li>
-											<li ng-click="manufacObj='车床—床身';capicityObjTree=false">床身</li>
-											<li ng-click="manufacObj='车床—床鞍';capicityObjTree=false">床鞍</li>
-											<li ng-click="manufacObj='车床—三座';capicityObjTree=false">三座</li>
-											<li ng-click="manufacObj='车床—尾座';capicityObjTree=false">尾座</li>
-											<li ng-click="manufacObj='车床—滑板';capicityObjTree=false">滑板</li>
-										</ul>
-									</li>
-									<li>
-										<span ng-click="manufacObj='铣床';capicityObjTree=false">铣床</span>
-										<ul>
-											<li ng-click="manufacObj='铣床-主轴';capicityObjTree=false">主轴</li>
-											<li ng-click="manufacObj='铣床—床身';capicityObjTree=false">床身</li>
-										</ul>
-									</li>
-								</ul>
-							</div><br><br>
-							
-							<!-- 加工对象：
-							<input ng-model="serviceObj" style="width: 200px; height: 25px"><br><br> -->
-							服务描述：
-							<input ng-model="serviceDescription" style="width: 200px; height: 25px"><br><br>
-							服务执行所需时间：
-							<input ng-model="procTime" style="width: 200px; height: 25px"><br><br>
-							服务费用：
-							<input ng-model="fee" style="width: 200px; height: 25px"><br><br>
-							服务具体内容：
-							<input ng-model="resourceContent" style="width: 200px; height: 25px"><br><br>
-							服务可用时间：
-							<input style="height: 25px" type="date"
-								ng-model="startTime"> 至 <input style="height: 25px"
-								type="date" ng-model="endTime"><br>
-							<br>
-							<button style="margin-left: 100px" class="btn btn-primary"
-								ng-click="savePublish1()">发布制造能力</button>
-							<button ng-click="clearPublish1()" class="btn btn-primary">清空</button>
-						</div>
-					</div>
-					<div style="margin-left: 200px" id="删除服务页面" ng-show="deleteService">
-						<br> 请选择企业： <select ng-model="enterprise"
-							ng-options="x for x in enterprises"
-							style="width: 200px; height: 30px">
-						</select><br>
-						<br> 请选择机床： <select ng-model="machine"
-							ng-options="y for y in machines"
-							style="width: 200px; height: 30px">
-						</select><br>
-						<br> 请选择机床型号： <select ng-model="machineType"
-							ng-options="z for z in machineTypes"
-							style="width: 200px; height: 30px">
-						</select><br>
-						<br>
-						<button style="margin-left: 100px" class="btn btn-danger"
-							ng-click="deleteService()">确认删除</button>
-						<button class="btn btn-primary" ng-click="cancelDelete()">取消</button>
-					</div>
-				</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{message['price']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{message['time']}}
+							</div>
+						</td>
+						<td class="inbox-data col-md-2">
+							<button class="btn btn-primary dropdown-toggle" ng-click="selectService(message.serviceName)">选择原子服务</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="margin-left:250px">
+				<button class="btn btn-primary" ng-click="upPage(atomicCurrentPage)">上一页</button>
+				<button class="btn btn-primary" ng-click="downPage(atomicCurrentPage)">下一页</button>
+				第{{atomicCurrentPage}}页，共{{atomicTotalPage}}页
 			</div>
 		</div>
-		<div class="tab-pane fade" id="服务组合">
-			<div class="col-md-3"
-				style="background-color: #E0E0E0; height: 495px">
-				<br>
-				<h4 style="margin-left: 100px">
-					<b>需求发布与匹配</b>
-				</h4>
-				<select style="width: 217px; height: 30px; margin-left: 45px" ng-model="demand">
-					<option value="产品">产品名称</option>
-					<option value="加工能力">制造能力</option>
-				</select>
-				<br><br>
-				<div ng-hide="demand=='加工能力'">
-					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center" placeholder="请输入产品名称"
-						ng-model="productName"><br>
-					<br>
-					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center" placeholder="请输入产品型号"
-						ng-model="productVersion"><br>
-					<br>
-					<button style="margin-left: 100px" class="btn btn-primary"
-						ng-click="publishProductDemand()">需求发布与匹配</button>
-				</div>
-				<div ng-show="demand=='加工能力'">
-					<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center" placeholder="请输入制造能力"
-						ng-model="procCapacity"><br>
-					<br>
-					<button style="margin-left: 100px" class="btn btn-primary"
-						ng-click="publishProcCapacityDemand()">需求发布与匹配</button>
-					<br>
-				</div>
-				
-				<!-- <h4 style="margin-left: 100px">
-					<b>检索服务</b>
-				</h4><br>
-				<select style="width: 217px; height: 30px; margin-left: 45px" ng-model="searchType">
-					<option value="服务名称">服务名称</option>
-					<option value="企业名称">企业名称</option>
-					<option value="加工能力">加工能力</option>
-				</select><br><br> 
-				<input style="width: 217px; height: 30px; margin-left: 45px; text-align: center; align: center"
-					ng-model="serviceName"><br>
-				<br>
-				<button style="margin-left: 100px" class="btn btn-primary"
-					ng-click="getServiceInfo(1)">服务检索</button> -->
-			</div>
-			<div class="col-md-6">
-				<div style="height: 450px">
-					<table class="table table-bordered" ng-show="isProduct">
-						<thead>
-							<tr>
-								<th>产品名称</th>
-								<th>描述</th>
-								<th>内容</th>
-								<th>价格</th>
-								<th>库存</th>
-								<th>选择服务</th>
-							</tr>
-						</thead>
+		<div class="col-md-3" style="background-color:#E0E0E0; height:495px">
+			<div class="center-block" style="width:300px">
+				<h4 style="margin-left:80px"><b>定制组合服务</b></h4>
+				目前只支持顺序结构
+				<div style="height:350px;background:#fff;overflow:auto">
+					<table class="table">
 						<tbody>
-							<tr ng-repeat="message in messages">
-								<td class="inbox-data col-md-4">
-									<div>
-										{{message['productName']}}
-									</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{message['productDescript']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{message['productContent']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{message['price']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{message['inventory']}}</div>
-								</td>
-								<td class="inbox-data col-md-2">
-									<button class="btn btn-primary dropdown-toggle"
-										ng-click="selectProduct(message.productName)">选择产品</button>
-								</td>
-							</tr>
+						<tr ng-repeat="service in services">
+							<td class="inbox-data" style="height:25px;width:300px;align:center;text-align:center">
+								{{service}}
+							</td>
+						</tr>
 						</tbody>
 					</table>
-					
-					<table class="table table-bordered" ng-hide='isProduct'>
-						<thead>
-							<tr>
-								<th>服务名称</th>
-								<th>描述</th>
-								<th>内容</th>
-								<th>价格</th>
-								<th>加工时间</th>
-								<th>选择服务</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="message in serviceMessages">
-								<td class="inbox-data">
-									<div>{{message['resourceName']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{message['description']}}</div>
-								</td>	
-								<td class="inbox-data">
-									<div>{{message['resourceContent']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{message['fee']}}</div>	
-								</td>
-								<td class="inbox-data">
-									<div>{{message['procTime']}}</div>
-								</td>
-								<td class="inbox-data col-md-2">
-									<button class="btn btn-primary dropdown-toggle"
-										ng-click="selectService(message.resourceName)">选择服务</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div style="margin-left: 250px">
-					<button class="btn btn-primary"
-						ng-click="upPage(atomicCurrentPage)">上一页</button>
-					<button class="btn btn-primary"
-						ng-click="downPage(atomicCurrentPage)">下一页</button>
-					第{{atomicCurrentPage}}页，共{{atomicTotalPage}}页
-				</div>
+				</div><br>
+				<input placeholder="定义组合服务名称" style="width:150px" ng-model="compositeServiceName">
+				<button class="btn btn-primary" ng-click="compositeService()">组合服务</button>
+				<button class="btn btn-primary" ng-click="services=[];">清空</button>
 			</div>
-			<div class="col-md-3"
-				style="background-color: #E0E0E0; height: 495px">
-				<div class="center-block" style="width: 300px">
-					<h4 style="margin-left: 80px">
-						<b>定制组合服务</b>
-					</h4>
-					<div style="height: 350px; background: #fff; overflow: auto">
-						<table class="table">
-							<tbody>
-								<tr ng-repeat="service in services">
-									<td class="inbox-data"
-										style="height: 25px; width: 300px; align: center; text-align: center">
-										{{service}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<br> <input placeholder="定义组合服务名称" style="width: 150px"
-						ng-model="compositeServiceName">
-					<button class="btn btn-primary" ng-click="compositeService()">组合服务</button>
-					<button class="btn btn-primary" ng-click="services=[];">清空</button>
-				</div>
 
-			</div>
 		</div>
-		<div class="tab-pane fade" id="服务评价">
-			<div class="col-md-3"
-				style="background-color: #E0E0E0; height: 495px">
-				<h4 style="margin-left: 100px">
-					<b>已仿真列表</b>
-				</h4>
-				<div style="background: #fff; height: 150px; overflow: auto">
-					<table>
-						<tbody>
-							<tr ng-repeat="simed in simeds">
-								<td
-									style="height: 25px; width: 300px; align: center; text-align: center">
-									<button class="btn btn-primary btn-lg" data-toggle="modal"
-										data-target="#myModal"
-										ng-click="getEvaluationResult(simed.name)">
-										{{simed['name']}}</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<hr>
-				<h4 style="margin-left: 100px">
-					<b>待仿真列表</b>
-				</h4>
-				<div
-					style="background: #fff; height: 200px; overflow: auto; align: center">
-					<table>
-						<tbody>
-							<tr ng-repeat="sim in sims">
-								<td
-									style="height: 25px; width: 300px; align: center; text-align: center">
-									{{sim}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="col-md-9">
-				<div style="height: 435px">
-					<h4>
-						<b>组合服务列表：</b>
-					</h4>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>组合服务名称</th>
-								<th>组合服务内容</th>
-								<th>总价</th>
-								<th>总时长</th>
-								<th>仿真</th>
-								<th>删除</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="compositeService in compositeServices">
-								<td class="inbox-data col-md-4">
-									<div>
-										<span title="compositeService['id']}}">{{compositeService['name']}}</span>
-									</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{compositeService['content']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{compositeService['totalPrice']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{compositeService['totalTime']}}</div>
-								</td>
-								<td class="inbox-data">
-									<button class="btn btn-primary dropdown-toggle"
-										ng-click="doSimulation(compositeService.name)">仿真</button>
-								</td>
-								<td class="inbox-data">
-									<button class="btn btn-danger dropdown-toggle"
-										ng-click="cancelService(compositeService.id)">删除</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-
-				</div>
-				<div style="margin-left: 300px">
-					<button class="btn btn-primary"
-						ng-click="goPreviousPage(currentPage)">上一页</button>
-					<button class="btn btn-primary" ng-click="goNextPage(currentPage)">下一页</button>
-					第{{currentPage}}页，共{{totalPage}}页
-				</div>
-			</div>
-		</div>
-
 	</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Evaluation results
-						of composite service</h4>
-				</div>
-				<div>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>service name</th>
-								<th>cost</th>
-								<th>processing time</th>
-								<th>facility utilization</th>
-								<th>resource utilization</th>
-								<th>bottleneck analysis</th>
-								<th>completed quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="simed in simeds">
-								<td class="inbox-data col-md-4">
-									<div>{{simed['name']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{simed['cost']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{simed['processingTime']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{simed['facilityUtilization']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{simed['resourceUtilization']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{simed['bottleneckAnalysis']}}</div>
-								</td>
-								<td class="inbox-data">
-									<div>{{simed['completedQuantity']}}</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				</div>
+	<div class="tab-pane fade" id="服务评价">
+		<div class="col-md-3" style="background-color:#E0E0E0; height:495px">
+			<h4 style="margin-left:100px"><b>已仿真列表</b></h4>
+			<div style="background:#fff;height:150px;overflow:auto" >
+				<table>
+					<tbody>
+					<tr ng-repeat="simed in simeds">
+						<td style="height:25px;width:300px;align:center;text-align:center">
+							<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" ng-click="getEvaluationResult(simed.name)">
+								{{simed['name']}}
+							</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div><hr>
+			<h4 style="margin-left:100px"><b>待仿真列表</b></h4>
+			<div style="background:#fff;height:200px;overflow:auto;align:center">
+				<table>
+					<tbody>
+					<tr ng-repeat="sim in sims">
+						<td style="height:25px;width:300px;align:center;text-align:center">
+							{{sim}}
+						</td>
+					</tr>
+					</tbody>
+				</table>
 			</div>
-			<!-- /.modal-content -->
 		</div>
-		<!-- /.modal -->
+		<div class="col-md-9">
+			<div style="height:435px">
+				<h4><b>组合服务列表：</b></h4>
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th>组合服务名称</th>
+						<th>组合服务内容</th>
+						<th>总价</th>
+						<th>总时长</th>
+						<th>仿真</th>
+						<th>删除</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="compositeService in compositeServices">
+						<td class="inbox-data col-md-4">
+							<div>
+								<span title="compositeService['id']}}">{{compositeService['name']}}</span>
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{compositeService['content']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{compositeService['totalPrice']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{compositeService['totalTime']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<button class="btn btn-primary dropdown-toggle" ng-click="doSimulation(compositeService.name)">仿真</button>
+						</td>
+						<td class="inbox-data">
+							<button class="btn btn-danger dropdown-toggle" ng-click="cancelService(compositeService.id)">删除</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div style="margin-left:300px">
+				<button class="btn btn-primary" ng-click="goPreviousPage(currentPage)">上一页</button>
+				<button class="btn btn-primary" ng-click="goNextPage(currentPage)">下一页</button>
+				第{{currentPage}}页，共{{totalPage}}页
+			</div>
+		</div>
 	</div>
-	<script
-		src="/AngularSpringmvcMybatis/resources/js/lib/angular/angular.js"></script>
-	<script
-		src="/AngularSpringmvcMybatis/resources/js/lib/angular/angular-file-upload.min.js"></script>
-	<script src="/AngularSpringmvcMybatis/resources/js/app.js"></script>
-	<script src="/AngularSpringmvcMybatis/resources/js/services.js"></script>
-	<script
-		src="/AngularSpringmvcMybatis/resources/js/controllers/UserController.js"></script>
-	<script
-		src="/AngularSpringmvcMybatis/resources/js/controllers/MainController.js"></script>
-	<script src="/AngularSpringmvcMybatis/resources/js/filters.js"></script>
-	<script src="/AngularSpringmvcMybatis/resources/js/directives.js"></script>
-	<script
-		src="/AngularSpringmvcMybatis/resources/bootstrap/js/jquery-3.1.1.min.js"></script>
-	<script
-		src="/AngularSpringmvcMybatis/resources/bootstrap/js/bootstrap.min.js"></script>
+	<div class="tab-pane fade" id="服务指标">
+		<div class="col-md-3" style="background-color:#E0E0E0; height:495px">
+			<br>
+			<h4 style="margin-left:100px"><b>检索原子服务</b></h4><br>
+			请输入组合服务名称：
+			<input style="width:217px;height:30px;margin-left:45px;text-align:center;align:center" ng-model="simedServiceName"><br><br>
+			<button style="margin-left:100px" class="btn btn-primary" ng-click="getSimedService()">服务检索</button>
+		</div>
+		<div class="col-md-9">
+			<div style="height:450px">
+				<p>组合服务名称：{{simedServiceName}}</p>
+
+			</div>
+
+		</div>
+	</div>
+
+
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Evaluation results of composite service</h4>
+			</div>
+			<div>
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th>service name</th>
+						<th>cost</th>
+						<th>processing time</th>
+						<th>facility utilization</th>
+						<th>resource utilization</th>
+						<th>bottleneck analysis</th>
+						<th>completed quantity</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="simed in simeds">
+						<td class="inbox-data col-md-4">
+							<div>
+								{{simed['name']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{simed['cost']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{simed['processingTime']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{simed['facilityUtilization']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{simed['resourceUtilization']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{simed['bottleneckAnalysis']}}
+							</div>
+						</td>
+						<td class="inbox-data">
+							<div>
+								{{simed['completedQuantity']}}
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+<script src="/AngularSpringmvcMybatis/resources/js/lib/angular/angular.js"></script>
+<script src="/AngularSpringmvcMybatis/resources/js/lib/angular/angular-file-upload.min.js"></script>
+<script src="/AngularSpringmvcMybatis/resources/js/app.js"></script>
+<script src="/AngularSpringmvcMybatis/resources/js/services.js"></script>
+<script src="/AngularSpringmvcMybatis/resources/js/controllers/UserController.js"></script>
+<script src="/AngularSpringmvcMybatis/resources/js/controllers/MainController.js"></script>
+<script src="/AngularSpringmvcMybatis/resources/js/filters.js"></script>
+<script src="/AngularSpringmvcMybatis/resources/js/directives.js"></script>
+<script src="/AngularSpringmvcMybatis/resources/bootstrap/js/jquery-3.1.1.min.js"></script>
+<script src="/AngularSpringmvcMybatis/resources/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>
