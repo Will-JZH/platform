@@ -4,12 +4,38 @@
 ## MySQL数据库
 目前项目文件所需要的mysql作为数据源，主要有以下几个表：    
 (1)user      
-
+'userID','int(11)','not null','primary key','auto_increment'   
+'userName','varchar(50)','not null',  
+'password','varchar(50)','not null',    
+'email','varchar(50)','not null',   
+'phone','varchar(50)','not null',    
+'address','varchar(255)','not null',  
+'authority','int(11)','not null',   
+     
 (2)productResourceInfo       
+'productID','int(11)','not null','primary key','auto_increment'    
+'productName','varchar(50)','not null',   
+'userID','int(11)','not null',    
+'productDescript','varchar(255)','not null',    
+'inventory','int(11)','not null',   
+'price','double','not null',    
+'productContent','varchar(255)','not null',
 
 (3)serviceResourceCal       
+'calendarID','int(11)','not null','primary key','auto_increment'    
+'resourceID','int(11)','not null',      
+'startTime','date','not null',    
+'endTime','date','not null',      
 
 (4)serviceResourceInfo        
+'resourceID','int(11)','not null','primary key','auto_increment'   
+'resourceName','varchar(50)','not null',   
+'userID','int(11)','not null',   
+'category','int(11)','not null',   
+'description','varchar(255)','default null',   
+'procTime','double','not null',   
+'fee','double','not null',    
+'resourceContent','varchar(255)','default null',   
 
 ## RDF4J数据库搭建
 在tomcat上搭建RDF4J（原名sesame）的方法请参考：https://blog.csdn.net/angle7777/article/details/20928293    
