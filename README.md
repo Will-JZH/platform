@@ -16,7 +16,7 @@
 'productID','int(11)','not null','primary key','auto_increment'    
 'productName','varchar(50)','not null',   
 'userID','int(11)','not null',    
-'productDescript','varchar(255)','not null',    
+'productDescript','varchar(255)','default null',    
 'inventory','int(11)','not null',   
 'price','double','not null',    
 'productContent','varchar(255)','not null',
